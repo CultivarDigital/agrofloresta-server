@@ -22,7 +22,7 @@ app.use(express.static(__dirname + '/dist'));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
 
-app.use(session({ secret: 'alimentodafonte', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
+app.use(session({ secret: 'agrofloresta', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
 
 if (!isProduction) {
   app.use(errorhandler());
@@ -31,7 +31,7 @@ if (!isProduction) {
 if(isProduction){
   mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 } else {
-  mongoose.connect('mongodb://localhost/alimentodafonte', { useNewUrlParser: true });
+  mongoose.connect('mongodb://localhost/agrofloresta', { useNewUrlParser: true });
   mongoose.set('debug', true);
 }
 
@@ -41,6 +41,11 @@ require('./src/models/Product');
 require('./src/models/Offer');
 require('./src/models/Order');
 require('./src/models/Message');
+require('./src/models/Plant');
+require('./src/models/QuizAnswer');
+require('./src/models/Topic');
+require('./src/models/Post');
+require('./src/models/Guide');
 
 require('./src/config/passport');
 
@@ -86,7 +91,3 @@ var server = app.listen( process.env.PORT || 3000, function(){
   // eslint-disable-next-line no-console
   console.log('Listening on port ' + server.address().port);
 });
-
-const MessageService = require('./src/msg-service')
-MessageService.setAdapter(require('./src/msg-service/mongodb-adapter'));
-MessageService.initSocket(server);

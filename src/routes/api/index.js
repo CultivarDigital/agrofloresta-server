@@ -8,8 +8,7 @@ router.use('/offers', require('./offers'));
 router.use('/orders', require('./orders'));
 router.use('/uploads', require('./uploads'));
 router.use('/shop', require('./shop'));
-router.use('/msg-service', require('../../msg-service/router'));
-
+ 
 router.use(function(err, req, res, next){
   if(err.name === 'ValidationError'){
     return res.status(422).json({

@@ -5,15 +5,10 @@ var mongoose = require('mongoose'),
   secret = require('../config').secret,
   AddressSchema = require('./Address'),
   ObjectId = mongoose.Schema.Types.ObjectId;
+
 mongoose.set('useCreateIndex', true)
 
 var UserSchema = new mongoose.Schema({
-  cnpj: {
-    type: String,
-    lowercase: true,
-    match: [/^[a-zA-Z0-9]+$/, 'inválido'],
-    index: true
-  },
   email: {
     type: String,
     unique: true,
@@ -27,16 +22,13 @@ var UserSchema = new mongoose.Schema({
   },
   hash: String,
   salt: String,
-  roles: [String],
   name: String,
-  nickname: String,
+  bio: String,
   phone: String,
   image: Object,
   address: AddressSchema,
-  organization: {
-    type: ObjectId,
-    ref: 'Organization'
-  }
+  roles: [String],
+  facebook_id: String
 }, {
   timestamps: true,
   toJSON: { virtuals: true }
@@ -63,14 +55,13 @@ UserSchema.methods.generateJWT = function() {
 
   return jwt.sign({
     id: this._id,
-    cnpj: this.cnpj,
-    name: this.name,
-    nickname: this.nickname,
-    phone: this.phone,
     email: this.email,
+    name: this.name,
+    bio: this.bio,
+    phone: this.phone,
     address: this.address,
-    organization: this.organization,
     roles: this.roles,
+    facebook_id: this.facebook_id,
     exp: parseInt(exp.getTime() / 1000),
   }, secret);
 };
@@ -78,14 +69,13 @@ UserSchema.methods.generateJWT = function() {
 UserSchema.methods.toAuthJSON = function() {
   return {
     _id: this._id,
-    cnpj: this.cnpj,
     email: this.email,
-    token: this.generateJWT(),
-    roles: this.roles,
     name: this.name,
-    nickname: this.nickname,
+    bio: this.bio,
     phone: this.phone,
     address: this.address,
+    roles: this.roles,
+    facebook_id: this.facebook_id
   };
 };
 
