@@ -41,6 +41,7 @@ require('./src/models/QuizAnswer');
 require('./src/models/Topic');
 require('./src/models/Post');
 require('./src/models/Guide');
+require('./src/models/Comment');
 
 require('./src/config/passport');
 

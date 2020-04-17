@@ -7,7 +7,21 @@ var express = require('express'),
   Topic = mongoose.model('Topic');
 
 router.get('/', function(req, res) {
-  Topic.find({}, select(req)).populate("user comments.user").exec(function(err, topics) {
+  var per_page = 7
+  var page = req.query.page || 1
+  var query = {}
+  if (req.query.search) {
+    query.$or = [
+      {
+        'title': { $regex: req.query.search, $options: "i" }
+      },
+      {
+        'content': { $regex: req.query.search, $options: "i" }
+      }
+    ]
+  }
+
+  Topic.find(query, select(req)).populate("comments").populate("user", "name picture").sort({ createdAt: -1 }).skip((page - 1) * per_page).limit(per_page).exec(function(err, topics) {
     if (err) {
       res.status(422).send('Erro: ' + err.message);
     } else {
@@ -18,7 +32,7 @@ router.get('/', function(req, res) {
 
 router.get('/slug', function(req, res) {
   Topic.findOne({
-    slug: slugify(req.query.name).toLowerCase()
+    slug: slugify(req.query.title).toLowerCase()
   }).exec(function(err, topic) {
     if (err) {
       res.status(422).send('Erro: ' + err.message);
@@ -31,7 +45,7 @@ router.get('/slug', function(req, res) {
 router.get('/:id', function(req, res) {
   Topic.findOne({
     _id: req.params.id
-  }).populate("user comments.user").exec(function(err, topic) {
+  }).populate("user", "name picture").exec(function(err, topic) {
     if (err) {
       res.status(422).send('Erro: ' + err.message);
     } else {
@@ -43,7 +57,7 @@ router.get('/:id', function(req, res) {
 router.post('/', auth.authenticated, function(req, res) {
   console.log(req.body);
   var newTopic = new Topic(req.body);
-  newTopic.slug = slugify(newTopic.name).toLowerCase()
+  newTopic.slug = slugify(newTopic.title).toLowerCase()
   newTopic.user = req.payload.id
   newTopic.save(function(err, topic) {
     if (err) {
@@ -56,7 +70,7 @@ router.post('/', auth.authenticated, function(req, res) {
 
 router.put('/:id', auth.authenticated, function(req, res) {
   var params = req.body
-  params.slug = slugify(params.name).toLowerCase()
+  params.slug = slugify(params.title).toLowerCase()
   Topic.findOneAndUpdate({
     _id: req.params.id
   }, {

@@ -20,8 +20,7 @@ const QuizAnswerSchema = mongoose.Schema({
     ref: 'User',
   },
 }, {
-  timestamps: true,
-  toJSON: { virtuals: true }
+  timestamps: true
 });
 
 mongoose.model('QuizAnswer', QuizAnswerSchema);

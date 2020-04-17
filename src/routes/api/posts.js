@@ -7,7 +7,7 @@ var express = require('express'),
   Post = mongoose.model('Post');
 
 router.get('/', function(req, res) {
-  Post.find({}, select(req)).populate("user").exec(function(err, posts) {
+  Post.find({}, select(req)).populate("user", "name picture").exec(function(err, posts) {
     if (err) {
       res.status(422).send('Erro: ' + err.message);
     } else {
@@ -31,7 +31,7 @@ router.get('/slug', function(req, res) {
 router.get('/:id', function(req, res) {
   Post.findOne({
     _id: req.params.id
-  }).populate("user").exec(function(err, post) {
+  }).populate("user", "name picture").exec(function(err, post) {
     if (err) {
       res.status(422).send('Erro: ' + err.message);
     } else {

@@ -10,6 +10,7 @@ var mongoose = require('mongoose'),
   Topic = mongoose.model('Topic'),
   Post = mongoose.model('Post'),
   Guide = mongoose.model('Guide'),
+  Comment = mongoose.model('Comment'),
   ObjectId = mongoose.Types.ObjectId,
   md5 = require('md5');
 
@@ -170,7 +171,7 @@ router.get('/is_alive', function(req, res) {
 router.get('/fix_users', function(req, res) {
   const fs = require('fs');
 
-  let rawdata = fs.readFileSync('src/data/users_data.json', 'utf8');
+  let rawdata = fs.readFileSync('../agrofloresta-import/users_data.json', 'utf8');
   let json_data = JSON.parse(rawdata);
   var users = []
   for (let index in json_data) {
@@ -312,7 +313,7 @@ router.get('/fix_plants', async function(req, res) {
 router.get('/fix_quiz_answers', async function(req, res) {
   const fs = require('fs');
 
-  let rawdata = fs.readFileSync('src/data/agrofloresta_data.json', 'utf8');
+  let rawdata = fs.readFileSync('../agrofloresta-import/agrofloresta_data.json', 'utf8');
   let json_data = JSON.parse(rawdata);
   var data = []
   for (let index in json_data) {
@@ -337,7 +338,7 @@ router.get('/fix_quiz_answers', async function(req, res) {
 router.get('/fix_topics', async function(req, res) {
   const fs = require('fs');
 
-  let rawdata = fs.readFileSync('src/data/agrofloresta_data.json', 'utf8');
+  let rawdata = fs.readFileSync('../agrofloresta-import/agrofloresta_data.json', 'utf8');
   let json_data = JSON.parse(rawdata);
   var data = []
   for (let index in json_data) {
@@ -348,15 +349,6 @@ router.get('/fix_topics', async function(req, res) {
       topic.title = item.title
       topic.content = item.content
       topic.tags = item.tags
-      if (item.comments) {
-        topic.comments = item.comments.filter(comment => comment.user_id).map(comment => {
-          return {
-            user: (new ObjectId(md5(comment.user_id).substring(8))),
-            message: comment.message,
-            createdAt: comment.created_at
-          }
-        })
-      }
 
       topic.createdAt = item.created_at
       topic.updatedAt = item.updated_at
@@ -364,6 +356,19 @@ router.get('/fix_topics', async function(req, res) {
         topic.user = (new ObjectId(md5(item.user_id).substring(8)))
       }
       topic = await topic.save()
+
+      if (item.comments) {
+        item.comments.filter(comment => comment.user_id).map(comment => {
+          var comment = new Comment({
+            user: (new ObjectId(md5(comment.user_id).substring(8))),
+            message: comment.message,
+            topic: topic._id,
+            createdAt: comment.created_at
+          });
+          comment.save()
+        })
+      }
+
 
       data.push(topic)
     }
@@ -374,7 +379,7 @@ router.get('/fix_topics', async function(req, res) {
 router.get('/fix_posts', async function(req, res) {
   const fs = require('fs');
 
-  let rawdata = fs.readFileSync('src/data/agrofloresta_data.json', 'utf8');
+  let rawdata = fs.readFileSync('../agrofloresta-import/agrofloresta_data.json', 'utf8');
   let json_data = JSON.parse(rawdata);
   var data = []
   for (let index in json_data) {
@@ -407,15 +412,6 @@ router.get('/fix_posts', async function(req, res) {
       post.location = item.location
       post.score = item.score
 
-      if (item.comments) {
-        post.comments = item.comments.filter(comment => comment.user_id).map(comment => {
-          return {
-            user: (new ObjectId(md5(comment.user_id).substring(8))),
-            message: comment.message,
-            createdAt: comment.created_at
-          }
-        })
-      }
       if (item.likes) {
         post.likes = item.likes.filter(like => like).map(like => {
           return new ObjectId(md5(like).substring(8))
@@ -434,6 +430,19 @@ router.get('/fix_posts', async function(req, res) {
       }
       post = await post.save()
 
+      if (item.comments) {
+        item.comments.filter(comment => comment.user_id).map(comment => {
+          var comment = new Comment({
+            user: (new ObjectId(md5(comment.user_id).substring(8))),
+            message: comment.message,
+            post: post._id,
+            createdAt: comment.created_at
+          });
+          comment.save()
+        })
+      }
+
+
       data.push(post)
     }
   }
@@ -443,7 +452,7 @@ router.get('/fix_posts', async function(req, res) {
 router.get('/fix_guides', async function(req, res) {
   const fs = require('fs');
 
-  let rawdata = fs.readFileSync('src/data/agrofloresta_data.json', 'utf8');
+  let rawdata = fs.readFileSync('../agrofloresta-import/agrofloresta_data.json', 'utf8');
   let json_data = JSON.parse(rawdata);
   var data = []
   for (let index in json_data) {

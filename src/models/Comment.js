@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
   ObjectId = mongoose.Schema.Types.ObjectId;
 
-var CommentSchema = new mongoose.Schema({
+var CommentSchema = mongoose.Schema({
   message: {
     type: String,
     required: true
@@ -9,9 +9,21 @@ var CommentSchema = new mongoose.Schema({
   user: {
     type: ObjectId,
     ref: 'User',
-  }
+  },
+  plant: {
+    type: ObjectId,
+    ref: 'Plant',
+  },
+  post: {
+    type: ObjectId,
+    ref: 'Post',
+  },
+  topic: {
+    type: ObjectId,
+    ref: 'Topic',
+  },
 }, {
   timestamps: true
 });
 
-module.exports = CommentSchema;
+mongoose.model('Comment', CommentSchema);

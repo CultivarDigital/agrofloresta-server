@@ -1,5 +1,4 @@
 const mongoose = require('mongoose'),
-  CommentSchema = require('./Comment'),
   ObjectId = mongoose.Schema.Types.ObjectId;
 
 const TopicSchema = mongoose.Schema({
@@ -12,7 +11,6 @@ const TopicSchema = mongoose.Schema({
     required: true
   },
   tags: [String],
-  comments: [CommentSchema],
   user: {
     type: ObjectId,
     ref: 'User',
@@ -20,6 +18,12 @@ const TopicSchema = mongoose.Schema({
 }, {
   timestamps: true,
   toJSON: { virtuals: true }
+});
+
+TopicSchema.virtual('comments', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'topic'
 });
 
 mongoose.model('Topic', TopicSchema);

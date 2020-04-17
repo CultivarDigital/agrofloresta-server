@@ -50,4 +50,10 @@ PlantSchema.virtual('quiz_answers', {
   foreignField: 'plant'
 });
 
+PlantSchema.virtual('comments', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'plant'
+});
+
 mongoose.model('Plant', PlantSchema);

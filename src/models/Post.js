@@ -1,5 +1,4 @@
 const mongoose = require('mongoose'),
-  CommentSchema = require('./Comment'),
   ObjectId = mongoose.Schema.Types.ObjectId;
 
 const PostSchema = mongoose.Schema({
@@ -13,7 +12,6 @@ const PostSchema = mongoose.Schema({
   },
   category: String,
   tags: [String],
-  comments: [CommentSchema],
   picture: Object,
   url: String,
   oembed: String,
@@ -36,6 +34,12 @@ const PostSchema = mongoose.Schema({
 }, {
   timestamps: true,
   toJSON: { virtuals: true }
+});
+
+PostSchema.virtual('comments', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'post'
 });
 
 mongoose.model('Post', PostSchema);

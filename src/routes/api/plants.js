@@ -12,16 +12,26 @@ router.get('/', function(req, res) {
   var page = req.query.page || 1
   var query = {}
   if (req.query.search) {
-    query.name = { $regex: req.query.search, $options: "i" }
+    query.$or = [
+      {
+        'name': { $regex: req.query.search, $options: "i" }
+      },
+      {
+        'scientific_name': { $regex: req.query.search, $options: "i" }
+      },
+      {
+        'popular_name': { $regex: req.query.search, $options: "i" }
+      }
+    ]
   } else {
     if (req.query.cycle) {
       query.cycle = req.query.cycle
     }
     if (req.query.stratum) {
       query.stratum = req.query.stratum
-    }    
+    }
   }
-  Plant.find(query, select(req)).populate("user").sort('name').skip((page - 1) * per_page).limit(per_page).exec(function(err, plants) {
+  Plant.find(query, select(req)).populate("user", "name picture").sort('name').skip((page - 1) * per_page).limit(per_page).exec(function(err, plants) {
     if (err) {
       res.status(422).send('Erro: ' + err.message);
     } else {
@@ -45,7 +55,7 @@ router.get('/slug', function(req, res) {
 router.get('/:id', function(req, res) {
   Plant.findOne({
     _id: req.params.id
-  }).populate("user").exec(function(err, plant) {
+  }).populate("user", "name picture").exec(function(err, plant) {
     if (err) {
       res.status(422).send('Erro: ' + err.message);
     } else {
