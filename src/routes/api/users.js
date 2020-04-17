@@ -5,7 +5,6 @@ var mongoose = require('mongoose'),
   slugify = require('slugify'),
   populate = require('../utils').populate,
   User = mongoose.model('User'),
-  Product = mongoose.model('Product'),
   Plant = mongoose.model('Plant'),
   QuizAnswer = mongoose.model('QuizAnswer'),
   Topic = mongoose.model('Topic'),
@@ -14,7 +13,7 @@ var mongoose = require('mongoose'),
   ObjectId = mongoose.Types.ObjectId,
   md5 = require('md5');
 
-router.get('/users', auth.manager, function(req, res) {
+router.get('/users', auth.curator, function(req, res) {
   var filters = {}
   if (req.query.role && req.query.role != 'user') {
     filters = {
@@ -31,7 +30,7 @@ router.get('/users', auth.manager, function(req, res) {
   });
 });
 
-router.get('/users/:id', auth.manager, function(req, res, next) {
+router.get('/users/:id', auth.authenticated, function(req, res, next) {
   User.findById(req.params.id).then(function(user) {
     if (!user) {
       return res.sendStatus(401);
@@ -41,7 +40,7 @@ router.get('/users/:id', auth.manager, function(req, res, next) {
   }).catch(next);
 });
 
-router.post('/users', auth.manager, function(req, res, next) {
+router.post('/users', auth.curator, function(req, res, next) {
   var user = new User();
 
   user.email = req.body.email
@@ -85,7 +84,7 @@ router.post('/register', function(req, res, next) {
   }).catch(next);
 });
 
-router.put('/users/:id', auth.manager, function(req, res, next) {
+router.put('/users/:id', auth.curator, function(req, res, next) {
   User.findById(req.params.id).then(function(user) {
 
     user.email = req.body.email
@@ -109,7 +108,7 @@ router.put('/users/:id', auth.manager, function(req, res, next) {
   })
 });
 
-router.delete('/users/:id', auth.manager, function(req, res) {
+router.delete('/users/:id', auth.curator, function(req, res) {
   User.findOne({
     _id: req.params.id
   }).exec(function(err, user) {
@@ -130,7 +129,7 @@ router.post('/users/login', function(req, res, next) {
   if (!req.body.email) {
     return res.status(422).json({
       errors: {
-        email: "can't be blank"
+        email: "campo obrigatório"
       }
     });
   }
@@ -138,7 +137,7 @@ router.post('/users/login', function(req, res, next) {
   if (!req.body.password) {
     return res.status(422).json({
       errors: {
-        password: "can't be blank"
+        password: "campo obrigatório"
       }
     });
   }
@@ -157,43 +156,6 @@ router.post('/users/login', function(req, res, next) {
       return res.status(422).json(info);
     }
   })(req, res, next);
-});
-
-router.get('/init', function(req, res) {
-  User.find({
-    roles: 'admin'
-  }).populate(populate(req)).exec(function(err, users) {
-    if (err) {
-      res.status(422).send('Erro:: ' + err);
-    } else {
-      if (users && users.length == 0) {
-        var user = new User();
-
-        var username = "admin@agrofloresta.com"
-        var password = Math.random().toString(36).substring(7)
-
-        user.setPassword(password);
-
-        user.name = 'Administrador do sistema'
-        user.email = 'admin@agrofloresta.com'
-        user.cnpj = '000'
-        user.roles = ['admin']
-
-
-        user.save().then(function() {
-          return res.send({
-            status: 'success',
-            user: username,
-            password: password
-          });
-        }).catch(e => {
-          return res.send(e)
-        });
-      } else {
-        res.send('Admin já cadastrado')
-      }
-    }
-  });
 });
 
 router.get('/is_alive', function(req, res) {
@@ -277,10 +239,25 @@ router.get('/fix_users', function(req, res) {
 router.get('/fix_plants', async function(req, res) {
   const fs = require('fs');
 
-  let rawdata = fs.readFileSync('src/data/agrofloresta_data.json', 'utf8');
+  let rawdata = fs.readFileSync('../agrofloresta-import/agrofloresta_data.json', 'utf8');
   let json_data = JSON.parse(rawdata);
   var data = []
-  for (let index in json_data) {
+  var check = {}
+  json_data.forEach((item) => {
+    if (check[item.name]) {
+      Object.keys(item).forEach(key => {
+        if (item[key] && item[key] != "") {
+          if (key != 'picture' || (item.picture && item.picture.url && item.picture.url.indexOf("http") == 0)) {
+            check[item.name][key] = item[key]
+          }
+        }
+      })
+    } else {
+      check[item.name] = item
+    }
+  })
+  json_data = Object.values(check)
+  for (let index in Object.values(check)) {
     var item = json_data[index]
     if (item.type == 'plant') {
 
@@ -408,7 +385,7 @@ router.get('/fix_posts', async function(req, res) {
       post.title = item.title
       post.content = item.content
       post.category = item.category
-      if(item.tags && item.tags.length) {
+      if (item.tags && item.tags.length) {
         post.tags = item.tags.map(tag => {
           if (typeof tag == 'object') {
             return tag.value
@@ -476,7 +453,7 @@ router.get('/fix_guides', async function(req, res) {
 
       guide.title = item.title
       guide.content = item.content
-      if(item.tags && item.tags.length) {
+      if (item.tags && item.tags.length) {
         guide.tags = item.tags.map(tag => {
           if (typeof tag == 'object') {
             return tag.value

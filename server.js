@@ -36,11 +36,6 @@ if(isProduction){
 }
 
 require('./src/models/User');
-require('./src/models/Organization');
-require('./src/models/Product');
-require('./src/models/Offer');
-require('./src/models/Order');
-require('./src/models/Message');
 require('./src/models/Plant');
 require('./src/models/QuizAnswer');
 require('./src/models/Topic');

@@ -10,43 +10,25 @@ function getTokenFromHeader(req){
   return null;
 }
 
-function isManager(req) {
+function isCurator(req) {
   if (req.payload && req.payload.roles) {
     var roles = req.payload.roles
-    return roles && (roles.includes('manager') || roles.includes('link') || roles.includes('admin'))
+    return roles && (roles.includes('curator') || roles.includes('admin'))
   }
   return false
 }
 
-function isLink(req) {
+function isUser(req) {
   if (req.payload && req.payload.roles) {
     var roles = req.payload.roles
-    return roles && (roles.includes('link') || roles.includes('admin'))
-  }
-  return false
-}
-
-function isProducer(req) {
-  if (req.payload && req.payload.roles) {
-    var roles = req.payload.roles
-    console.log('roles');
-    console.log(roles);
-    return roles && (roles.includes('producer') || roles.includes('admin'))
-  }
-  return false
-}
-
-function isClient(req) {
-  if (req.payload && req.payload.roles) {
-    var roles = req.payload.roles
-    return roles && (roles.includes('client'))
+    return roles && (roles.includes('user'))
   }
   return false
 }
 
 
-function authenticatedManager(req, res, next) {
-  if (isManager(req)) {
+function authenticatedCurator(req, res, next) {
+  if (isCurator(req)) {
     next()
   } else {
     return res.status(403).json({
@@ -56,35 +38,13 @@ function authenticatedManager(req, res, next) {
   }
 }
 
-function authenticatedLink(req, res, next) {
-  if (isLink(req)) {
+function authenticatedUser(req, res, next) {
+  if (isUser(req)) {
     next()
   } else {
     return res.status(403).json({
       status: 403,
-      message: 'A permissão de elo ou administrador é necessária para acessar este recurso.'
-    })
-  }
-}
-
-function authenticatedProducer(req, res, next) {
-  if (isProducer(req)) {
-    next()
-  } else {
-    return res.status(403).json({
-      status: 403,
-      message: 'A permissão de produtor ou administrador é necessária para acessar este recurso.'
-    })
-  }
-}
-
-function authenticatedClient(req, res, next) {
-  if (isClient(req)) {
-    next()
-  } else {
-    return res.status(403).json({
-      status: 403,
-      message: 'A permissão de cliente é necessária para acessar este recurso.'
+      message: 'A permissão de usuário é necessária para acessar este recurso.'
     })
   }
 }
@@ -95,36 +55,24 @@ var auth = {
     userProperty: 'payload',
     getToken: getTokenFromHeader
   }),
-  manager: [jwt({
+  curator: [jwt({
     secret: secret,
     userProperty: 'payload',
     getToken: getTokenFromHeader
-  }), authenticatedManager],
-  link: [jwt({
+  }), authenticatedCurator],
+  user: [jwt({
     secret: secret,
     userProperty: 'payload',
     getToken: getTokenFromHeader
-  }), authenticatedLink],
-  producer: [jwt({
-    secret: secret,
-    userProperty: 'payload',
-    getToken: getTokenFromHeader
-  }), authenticatedProducer],
-  client: [jwt({
-    secret: secret,
-    userProperty: 'payload',
-    getToken: getTokenFromHeader
-  }), authenticatedClient],
+  }), authenticatedUser],
   optional: jwt({
     secret: secret,
     userProperty: 'payload',
     credentialsRequired: false,
     getToken: getTokenFromHeader
   }),
-  isLink: isLink,
-  isManager: isManager,
-  isProducer: isProducer,
-  isClient: isClient
+  isCurator: isCurator,
+  isUser: isUser
 };
 
 module.exports = auth;

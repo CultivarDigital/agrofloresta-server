@@ -33,19 +33,19 @@ export default {
     currentRole() {
       if (this.isAdmin) {
         return tipos_de_usuario.find(e => e.value == 'admin')
-      } else if (this.isManager) {
-        return tipos_de_usuario.find(e => e.value == 'manager')
+      } else if (this.isCurator) {
+        return tipos_de_usuario.find(e => e.value == 'curator')
       }
       return { "text": "Usuário", "value": "user" }
     },
     isAdmin() {
       return this.isA('admin')
     },
-    isManager() {
-      return this.isA('manager') || this.isA('link') || this.isA('admin')
+    isCurator() {
+      return this.isA('curator') || this.isA('admin')
     },
-    isLink() {
-      return this.isA('link') || this.isA('admin')
+    isUser() {
+      return this.isA('user') || this.isA('curator') || this.isA('admin')
     },
     baseUrl() {
       return axios.defaults.baseURL.replace('/api', '')

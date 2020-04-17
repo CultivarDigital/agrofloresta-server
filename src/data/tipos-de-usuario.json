@@ -1,7 +1,5 @@
 [
 	{ "text": "Administrador", "value": "admin" },
-	{ "text": "Gestor", "value": "manager" },
-	{ "text": "Elo", "value": "link" },
-	{ "text": "Produtor", "value": "producer" },
-	{ "text": "Cliente", "value": "client" }
+	{ "text": "Curador", "value": "curator" },
+	{ "text": "Usuário", "value": "user" }
 ]

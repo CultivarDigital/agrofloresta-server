@@ -1,14 +1,11 @@
 var router = require('express').Router();
 
 router.use('/', require('./users'));
-router.use('/organizations', require('./organizations'));
-router.use('/producers', require('./producers'));
-router.use('/products', require('./products'));
-router.use('/offers', require('./offers'));
-router.use('/orders', require('./orders'));
 router.use('/uploads', require('./uploads'));
-router.use('/shop', require('./shop'));
- 
+router.use('/plants', require('./plants'));
+router.use('/posts', require('./posts'));
+router.use('/topics', require('./topics'));
+
 router.use(function(err, req, res, next){
   if(err.name === 'ValidationError'){
     return res.status(422).json({

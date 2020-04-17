@@ -75,7 +75,8 @@ UserSchema.methods.toAuthJSON = function() {
     phone: this.phone,
     address: this.address,
     roles: this.roles,
-    facebook_id: this.facebook_id
+    facebook_id: this.facebook_id,
+    token: this.generateJWT(),
   };
 };
 
