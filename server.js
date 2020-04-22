@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(require('method-override')());
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + '/static'));
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
 
