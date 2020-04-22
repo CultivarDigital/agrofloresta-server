@@ -6,6 +6,8 @@ router.use('/plants', require('./plants'));
 router.use('/posts', require('./posts'));
 router.use('/topics', require('./topics'));
 router.use('/comments', require('./comments'));
+router.use('/likes', require('./likes'));
+router.use('/quiz', require('./quiz'));
 
 router.use(function(err, req, res, next){
   if(err.name === 'ValidationError'){

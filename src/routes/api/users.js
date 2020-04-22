@@ -11,6 +11,7 @@ var mongoose = require('mongoose'),
   Post = mongoose.model('Post'),
   Guide = mongoose.model('Guide'),
   Comment = mongoose.model('Comment'),
+  Like = mongoose.model('Like'),
   ObjectId = mongoose.Types.ObjectId,
   md5 = require('md5');
 
@@ -412,16 +413,6 @@ router.get('/fix_posts', async function(req, res) {
       post.location = item.location
       post.score = item.score
 
-      if (item.likes) {
-        post.likes = item.likes.filter(like => like).map(like => {
-          return new ObjectId(md5(like).substring(8))
-        })
-      }
-      if (item.dislikes) {
-        post.dislikes = item.dislikes.filter(dislike => dislike).map(dislike => {
-          return new ObjectId(md5(dislike).substring(8))
-        })
-      }
 
       post.createdAt = item.created_at
       post.updatedAt = item.updated_at
@@ -442,6 +433,19 @@ router.get('/fix_posts', async function(req, res) {
         })
       }
 
+      if (item.likes) {
+        console.log(item.likes);
+        item.likes.map(like_item => {
+          if (like_item) {
+            var like = new Like({
+              user: (new ObjectId(md5(like_item).substring(8))),
+              post: post._id
+            });
+            like.save()
+            
+          }
+        })
+      }
 
       data.push(post)
     }

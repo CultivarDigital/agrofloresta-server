@@ -7,23 +7,50 @@ var express = require('express'),
   Post = mongoose.model('Post');
 
 router.get('/', function(req, res) {
-  Post.find({}, select(req)).populate("user", "name picture").exec(function(err, posts) {
+  var per_page = 10
+  var page = req.query.page || 1
+  var query = {}
+  if (req.query.search) {
+    query.$or = [
+      {
+        'title': { $regex: req.query.search, $options: "i" }
+      },
+      {
+        'content': { $regex: req.query.search, $options: "i" }
+      }
+    ]
+  } else {
+    if (req.query.category) {
+      query.category = req.query.category
+    }
+    if (req.query.tags) {
+      query.tags = req.query.tags
+    }
+  }
+  Post.find(query, select(req)).populate("user", "name picture").populate("likes", "user").populate("comments").sort({ createdAt: -1 }).skip((page - 1) * per_page).limit(per_page).exec(function(err, posts) {
     if (err) {
       res.status(422).send('Erro: ' + err.message);
     } else {
       res.json(posts);
     }
   });
+
 });
 
-router.get('/slug', function(req, res) {
-  Post.findOne({
-    slug: slugify(req.query.name).toLowerCase()
-  }).exec(function(err, post) {
+router.get('/tags', function(req, res) {
+  Post.find({}).select("tags").exec(function(err, posts) {
     if (err) {
       res.status(422).send('Erro: ' + err.message);
     } else {
-      res.json(post);
+      var tags = {}
+      posts.forEach(post => {
+        if (post.tags) {
+          post.tags.forEach(tag => {
+            tags[tag] = true
+          })
+        }
+      })
+      res.json(Object.keys(tags).sort());
     }
   });
 });
@@ -31,7 +58,7 @@ router.get('/slug', function(req, res) {
 router.get('/:id', function(req, res) {
   Post.findOne({
     _id: req.params.id
-  }).populate("user", "name picture").exec(function(err, post) {
+  }).populate("user", "name picture").populate("likes", "user").populate("comments").exec(function(err, post) {
     if (err) {
       res.status(422).send('Erro: ' + err.message);
     } else {
@@ -40,11 +67,12 @@ router.get('/:id', function(req, res) {
   });
 });
 
+
 router.post('/', auth.authenticated, function(req, res) {
-  var newPlant = new Post(req.body);
-  newPlant.slug = slugify(newPlant.name).toLowerCase()
-  newPlant.user = req.payload.id
-  newPlant.save(function(err, post) {
+  var newPost = new Post(req.body);
+  newPost.slug = slugify(newPost.title).toLowerCase()
+  newPost.user = req.payload.id
+  newPost.save(function(err, post) {
     if (err) {
       res.status(422).send('Erro: ' + err.message);
     } else {
@@ -55,7 +83,8 @@ router.post('/', auth.authenticated, function(req, res) {
 
 router.put('/:id', auth.authenticated, function(req, res) {
   var params = req.body
-  params.slug = slugify(params.name).toLowerCase()
+  params.slug = slugify(params.title).toLowerCase()
+  params.user = req.payload.id
   Post.findOneAndUpdate({
     _id: req.params.id
   }, {

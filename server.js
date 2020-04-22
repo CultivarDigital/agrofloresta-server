@@ -42,6 +42,7 @@ require('./src/models/Topic');
 require('./src/models/Post');
 require('./src/models/Guide');
 require('./src/models/Comment');
+require('./src/models/Like');
 
 require('./src/config/passport');
 
