@@ -25,10 +25,11 @@ var UserSchema = new mongoose.Schema({
   name: String,
   bio: String,
   phone: String,
-  image: Object,
+  picture: Object,
   address: AddressSchema,
   roles: [String],
-  facebook_id: String
+  facebook_id: String,
+  profileCompleted: Boolean
 }, {
   timestamps: true,
   toJSON: { virtuals: true }
@@ -60,8 +61,10 @@ UserSchema.methods.generateJWT = function() {
     bio: this.bio,
     phone: this.phone,
     address: this.address,
+    picture: this.picture,
     roles: this.roles,
     facebook_id: this.facebook_id,
+    profileCompleted: this.profileCompleted,
     exp: parseInt(exp.getTime() / 1000),
   }, secret);
 };
@@ -75,7 +78,9 @@ UserSchema.methods.toAuthJSON = function() {
     phone: this.phone,
     address: this.address,
     roles: this.roles,
+    picture: this.picture,
     facebook_id: this.facebook_id,
+    profileCompleted: this.profileCompleted,
     token: this.generateJWT(),
   };
 };

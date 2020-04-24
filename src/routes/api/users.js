@@ -68,7 +68,7 @@ router.post('/users', auth.curator, function(req, res, next) {
   }).catch(next);
 });
 
-router.post('/register', function(req, res, next) {
+router.post('/users/register', function(req, res, next) {
   var user = new User();
 
   user.email = req.body.email
@@ -86,15 +86,22 @@ router.post('/register', function(req, res, next) {
   }).catch(next);
 });
 
-router.put('/users/:id', auth.curator, function(req, res, next) {
-  User.findById(req.params.id).then(function(user) {
+router.put('/users/:id', auth.authenticated, function(req, res, next) {
+  var id = req.params.id
+  if (!req.payload.roles.includes('admin') && !req.payload.roles.includes('curator')) {
+    id = req.payload.id
+  }
+
+  User.findById(id).then(function(user) {
 
     user.email = req.body.email
     user.name = req.body.name
     user.bio = req.body.bio
     user.phone = req.body.phone
     user.address = req.body.address
-    user.facebook_id = req.body.facebook_id
+    user.picture = req.body.picture
+    user.profileCompleted = true
+
 
     if (req.payload.roles.includes('admin')) {
       user.roles = req.body.roles
@@ -195,6 +202,7 @@ router.get('/fix_users', function(req, res) {
 
       user.bio = item.bio
       user.phone = item.phone
+      user.picture = fixPicture(item.picture)
       var city = ""
       var state = ""
       if (item.location) {
@@ -282,7 +290,7 @@ router.get('/fix_plants', async function(req, res) {
       plant.category = item.category
       plant.description = item.description
       plant.source = item.source
-      plant.picture = item.picture
+      plant.picture = fixPicture(item.picture)
       plant.pictures = item.pictures
       plant.climate = item.climate
       plant.origin = item.origin
@@ -401,7 +409,7 @@ router.get('/fix_posts', async function(req, res) {
         })
       }
 
-      post.picture = item.picture
+      post.picture = fixPicture(item.picture)
       post.url = item.url
       post.oembed = item.oembed
       if (item.start_time && item.start_time != "") {
@@ -442,7 +450,7 @@ router.get('/fix_posts', async function(req, res) {
               post: post._id
             });
             like.save()
-            
+
           }
         })
       }
@@ -486,5 +494,17 @@ router.get('/fix_guides', async function(req, res) {
   }
   res.send(data);
 });
+
+function fixPicture(picture) {
+  if (picture && picture.url) {
+    Object.keys(picture).forEach(key => {
+      if (picture[key] && picture[key].indexOf('static/') == 0) {
+        picture[key] = picture[key].replace('static/', 'uploads/')
+      }
+    })
+  }
+  return picture
+
+}
 
 module.exports = router;
