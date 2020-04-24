@@ -6,6 +6,10 @@ router.get('/.well-known/acme-challenge/Ww7ZEJD5DDj6HszhmcX-YX-os83YXoTLiZBGxbUG
   res.send('Ww7ZEJD5DDj6HszhmcX-YX-os83YXoTLiZBGxbUGh3g.B4nxrO1S1B3e7HDu2IusPKp4H-N5oOFGWoTd_E4YLvg');
 });
 
+router.get('/.well-known/acme-challenge/BSbQgZk4oVUCtXwSdi6IvxJOmQYfUKb4XkbG6nczsiM', function(req, res) {
+  res.send('BSbQgZk4oVUCtXwSdi6IvxJOmQYfUKb4XkbG6nczsiM.B4nxrO1S1B3e7HDu2IusPKp4H-N5oOFGWoTd_E4YLvg');
+});
+
 router.get('/painel', function(req, res, next) {
   res.redirect('/#/painel')
 });
