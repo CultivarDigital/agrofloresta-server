@@ -1,6 +1,6 @@
 webpackJsonp([8],{
 
-/***/ 472:
+/***/ 473:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,7 +8,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProfileEditPageModule", function() { return ProfileEditPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__profile_edit__ = __webpack_require__(544);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__profile_edit__ = __webpack_require__(545);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_components_module__ = __webpack_require__(490);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -15492,7 +15492,7 @@ var AvatarComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 544:
+/***/ 545:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -15546,11 +15546,21 @@ var ProfileEditPage = /** @class */ (function () {
         this.utils = utils;
         this.form = formBuilder.group({
             _id: ['', __WEBPACK_IMPORTED_MODULE_3__angular_forms__["j" /* Validators */].required],
-            username: ['', __WEBPACK_IMPORTED_MODULE_3__angular_forms__["j" /* Validators */].required],
+            email: ['', __WEBPACK_IMPORTED_MODULE_3__angular_forms__["j" /* Validators */].required],
             name: ['', __WEBPACK_IMPORTED_MODULE_3__angular_forms__["j" /* Validators */].required],
             picture: [''],
             bio: [''],
-            location: [''],
+            phone: [''],
+            address: formBuilder.group({
+                city: '',
+                uf: '',
+                street: '',
+                neighborhood: '',
+                complement: '',
+                postal_code: '',
+                description: '',
+                source: {}
+            }),
             roles: ['']
         });
         this.form.valueChanges.subscribe(function (v) {
@@ -15576,17 +15586,12 @@ var ProfileEditPage = /** @class */ (function () {
             console.log('erro: ', e);
         });
     };
+    var _a, _b, _c, _d, _e, _f, _g;
     ProfileEditPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-profile-edit',template:/*ion-inline-start:"/home/diego/dev/agrofloresta/src/pages/profile-edit/profile-edit.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title *ngIf="this.database.currentUser.username">Editando perfil</ion-title>\n    <ion-title *ngIf="!this.database.currentUser.username">Complete seu cadastro</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="save()" [disabled]="!isReadyToSave" strong>\n        <ion-icon name="checkmark"></ion-icon>\n      </button>\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n  <form *ngIf="form" [formGroup]="form">\n    <picture-upload [form]="this.form" [type]="\'image\'"></picture-upload>\n\n    <ion-item>\n      <ion-label stacked>Nome:</ion-label>\n      <ion-input type="text" formControlName="username"></ion-input>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked>Biografia:</ion-label>\n      <ion-textarea formControlName="bio" placeholder="Conte-nos um pouco sobre você"></ion-textarea>\n    </ion-item>\n\n    <ion-item>\n      <ion-label stacked>Cidade-Estado:</ion-label>\n      <ion-input formControlName="location" placeholder="Ex: Goiânia - GO"></ion-input>\n    </ion-item>\n  </form>\n</ion-content>'/*ion-inline-end:"/home/diego/dev/agrofloresta/src/pages/profile-edit/profile-edit.html"*/
+            selector: 'page-profile-edit',template:/*ion-inline-start:"/home/diego/dev/agrofloresta/src/pages/profile-edit/profile-edit.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title *ngIf="this.database.currentUser.profileCompleted">Editando perfil</ion-title>\n    <ion-title *ngIf="!this.database.currentUser.profileCompleted">Complete seu cadastro</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="save()" [disabled]="!isReadyToSave" strong>\n        <ion-icon name="checkmark"></ion-icon>\n      </button>\n    </ion-buttons>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n  <form *ngIf="form" [formGroup]="form">\n    <picture-upload [form]="this.form" [type]="\'image\'"></picture-upload>\n    <ion-item>\n      <ion-label stacked>Nome*:</ion-label>\n      <ion-input type="text" formControlName="name"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Email*:</ion-label>\n      <ion-input type="text" formControlName="email"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Telefone/WhatsApp*:</ion-label>\n      <ion-input type="text" formControlName="phone"></ion-input>\n    </ion-item>\n    <ion-item>\n      <ion-label stacked>Biografia:</ion-label>\n      <ion-textarea formControlName="bio" placeholder="Conte-nos um pouco sobre você"></ion-textarea>\n    </ion-item>\n\n\n    <div formGroupName="address">\n      <ion-item>\n        <ion-label stacked>Cidade:</ion-label>\n        <ion-input formControlName="city"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label stacked>Estado:</ion-label>\n        <ion-input formControlName="uf"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label stacked>Endereço:</ion-label>\n        <ion-input formControlName="street"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label stacked>Bairro:</ion-label>\n        <ion-input formControlName="neighborhood"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label stacked>Complemento:</ion-label>\n        <ion-input formControlName="complement"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-label stacked>CEP:</ion-label>\n        <ion-input formControlName="postal_code"></ion-input>\n      </ion-item>\n    </div>\n  </form>\n</ion-content>\n'/*ion-inline-end:"/home/diego/dev/agrofloresta/src/pages/profile-edit/profile-edit.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_4__providers__["a" /* Api */],
-            __WEBPACK_IMPORTED_MODULE_4__providers__["b" /* Database */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* FormBuilder */],
-            __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */],
-            __WEBPACK_IMPORTED_MODULE_5__utils_utils__["a" /* Utils */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["k" /* NavController */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__providers__["a" /* Api */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers__["a" /* Api */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__providers__["b" /* Database */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers__["b" /* Database */]) === "function" ? _c : Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* ToastController */]) === "function" ? _d : Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["b" /* FormBuilder */]) === "function" ? _e : Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["c" /* TranslateService */]) === "function" ? _f : Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5__utils_utils__["a" /* Utils */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__utils_utils__["a" /* Utils */]) === "function" ? _g : Object])
     ], ProfileEditPage);
     return ProfileEditPage;
 }());

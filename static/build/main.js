@@ -270,15 +270,15 @@ var map = {
 		14
 	],
 	"../pages/guide-form/guide-form.module": [
-		461,
+		459,
 		4
 	],
 	"../pages/guide/guide.module": [
-		459,
+		460,
 		13
 	],
 	"../pages/guides/guides.module": [
-		460,
+		461,
 		25
 	],
 	"../pages/home/home.module": [
@@ -302,11 +302,11 @@ var map = {
 		22
 	],
 	"../pages/moon-calendar/moon-calendar.module": [
-		467,
+		468,
 		10
 	],
 	"../pages/plant-form/plant-form.module": [
-		468,
+		467,
 		3
 	],
 	"../pages/plant/plant.module": [
@@ -314,19 +314,19 @@ var map = {
 		9
 	],
 	"../pages/plants/plants.module": [
-		470,
+		471,
 		16
 	],
 	"../pages/post-form/post-form.module": [
-		471,
+		470,
 		2
 	],
 	"../pages/post/post.module": [
-		473,
+		472,
 		0
 	],
 	"../pages/profile-edit/profile-edit.module": [
-		472,
+		473,
 		8
 	],
 	"../pages/profile/profile.module": [
@@ -354,15 +354,15 @@ var map = {
 		1
 	],
 	"../pages/topic/topic.module": [
-		480,
+		481,
 		5
 	],
 	"../pages/tutorial/tutorial.module": [
-		482,
+		480,
 		18
 	],
 	"../pages/welcome/welcome.module": [
-		481,
+		482,
 		17
 	]
 };
@@ -448,8 +448,7 @@ var Database = /** @class */ (function () {
         this.plt = plt;
         this.http = http;
         this.utils = utils;
-        // public baseUrl = 'http://localhost:3000/api/';
-        this.baseUrl = 'https://www.redeagroflorestal.com.br/api/';
+        this.baseUrl = 'http://localhost:3000/api/';
         this.cycles = {
             placenta1: 'Placenta 1 (Até 3 meses)',
             placenta2: 'Placenta 2 (3 meses a 1 ano)',
@@ -498,15 +497,25 @@ var Database = /** @class */ (function () {
     Database.prototype.saveProfile = function (item) {
         var _this = this;
         return this.put('users', item).then(function (res) {
-            return _this.login(item._id);
+            return _this.login(item.email);
         });
     };
-    Database.prototype.signup = function (email, metadata) {
+    Database.prototype.signup = function (email) {
         var _this = this;
-        if (metadata === void 0) { metadata = {}; }
         return this.storage.get('currentPosition').then(function (position) {
-            return _this.userDb.signUp(email, 'agrofloresteiro', {
-                metadata: Object.assign({ position: position }, metadata)
+            var coordinates = [];
+            if (position && position.latitude && position.longitude) {
+                coordinates = [Number(position.latitude), Number(position.longitude)];
+            }
+            return _this.post('users/register', {
+                email: email,
+                password: 'agrofloresta',
+                address: {
+                    location: {
+                        type: "Point",
+                        coordinates: coordinates
+                    }
+                }
             }).then(function (resp) {
                 if (resp) {
                     return _this.login(email);
@@ -517,10 +526,9 @@ var Database = /** @class */ (function () {
     Database.prototype.login = function (email) {
         return __awaiter(this, void 0, void 0, function () {
             var res;
-            var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.http.post(this.baseUrl + "users/login", { email: email, password: 'agrofloresta' }).toPromise().catch(function (e) { return _this.showError(e, _this.utils); })];
+                    case 0: return [4 /*yield*/, this.http.post(this.baseUrl + "users/login", { email: email, password: 'agrofloresta' }).toPromise()];
                     case 1:
                         res = _a.sent();
                         if (res && res._id) {
@@ -900,30 +908,30 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/donate/donate.module#DonatePageModule', name: 'DonatePage', segment: 'donate', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/feed/feed.module#FeedPageModule', name: 'FeedPage', segment: 'feed/:category', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/forum/forum.module#ForumPageModule', name: 'ForumPage', segment: 'forum', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/guide-form/guide-form.module#GuideFormPageModule', name: 'GuideFormPage', segment: 'guide-form', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/guide/guide.module#GuidePageModule', name: 'GuidePage', segment: 'guide/:id', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/guides/guides.module#GuidesPageModule', name: 'GuidesPage', segment: 'guides', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/guide-form/guide-form.module#GuideFormPageModule', name: 'GuideFormPage', segment: 'guide-form', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/home/home.module#HomePageModule', name: 'HomePage', segment: 'home', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/how-to-help/how-to-help.module#HowToHelpPageModule', name: 'HowToHelpPage', segment: 'how-to-help', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/library/library.module#LibraryPageModule', name: 'LibraryPage', segment: 'library/:category', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/menu/menu.module#MenuPageModule', name: 'MenuPage', segment: 'menu', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/moon-calendar/moon-calendar.module#MoonCalendarPageModule', name: 'MoonCalendarPage', segment: 'moon-calendar', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/plant-form/plant-form.module#PlantFormPageModule', name: 'PlantFormPage', segment: 'plant-form', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/moon-calendar/moon-calendar.module#MoonCalendarPageModule', name: 'MoonCalendarPage', segment: 'moon-calendar', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/plant/plant.module#PlantPageModule', name: 'PlantPage', segment: 'plant/:id', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/plants/plants.module#PlantsPageModule', name: 'PlantsPage', segment: 'plants', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/post-form/post-form.module#PostFormPageModule', name: 'PostFormPage', segment: 'post-form', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/profile-edit/profile-edit.module#ProfileEditPageModule', name: 'ProfileEditPage', segment: 'profile-edit', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/plants/plants.module#PlantsPageModule', name: 'PlantsPage', segment: 'plants', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/post/post.module#PostPageModule', name: 'PostPage', segment: 'post/:id', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/profile-edit/profile-edit.module#ProfileEditPageModule', name: 'ProfileEditPage', segment: 'profile-edit', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/profile/profile.module#ProfilePageModule', name: 'ProfilePage', segment: 'profile', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/settings/settings.module#SettingsPageModule', name: 'SettingsPage', segment: 'settings', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/share/share.module#SharePageModule', name: 'SharePage', segment: 'share', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/tabs/tabs.module#TabsPageModule', name: 'TabsPage', segment: 'tabs', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/topic-form/topic-form.module#TopicFormPageModule', name: 'TopicFormPage', segment: 'topic-form', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/tutorial/tutorial.module#TutorialPageModule', name: 'TutorialPage', segment: 'tutorial', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/topic/topic.module#TopicPageModule', name: 'TopicPage', segment: 'topic/:id', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/welcome/welcome.module#WelcomePageModule', name: 'WelcomePage', segment: 'welcome', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/tutorial/tutorial.module#TutorialPageModule', name: 'TutorialPage', segment: 'tutorial', priority: 'low', defaultHistory: [] }
+                        { loadChildren: '../pages/welcome/welcome.module#WelcomePageModule', name: 'WelcomePage', segment: 'welcome', priority: 'low', defaultHistory: [] }
                     ]
                 }),
                 __WEBPACK_IMPORTED_MODULE_6__ionic_storage__["a" /* IonicStorageModule */].forRoot({
@@ -989,8 +997,8 @@ var Api = /** @class */ (function () {
     function Api(http, database) {
         this.http = http;
         this.database = database;
-        // url: string = 'http://localhost:3000/';
-        this.url = 'https://www.redeagroflorestal.com.br/';
+        this.url = 'http://localhost:3000/';
+        // url: string = 'https://www.redeagroflorestal.com.br/';
         this.loading = false;
     }
     Api.prototype.fileUpload = function (fileItem, extraData) {
@@ -1063,10 +1071,9 @@ var Api = /** @class */ (function () {
     Api.prototype.patch = function (endpoint, body, reqOpts) {
         return this.http.patch(this.url + endpoint, body, reqOpts);
     };
-    var _a, _b;
     Api = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__database_database__["a" /* Database */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__database_database__["a" /* Database */]) === "function" ? _b : Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_2__database_database__["a" /* Database */]])
     ], Api);
     return Api;
 }());

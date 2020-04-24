@@ -1,6 +1,6 @@
 webpackJsonp([17],{
 
-/***/ 481:
+/***/ 482:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9,7 +9,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__welcome__ = __webpack_require__(553);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__welcome__ = __webpack_require__(554);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -44,7 +44,7 @@ var WelcomePageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 553:
+/***/ 554:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -88,7 +88,7 @@ var WelcomePage = /** @class */ (function () {
         this.fb.login(['public_profile', 'email'])
             .then(function (res) {
             _this.fb.api("me?fields=id,name,email,first_name,picture.width(320).height(320).as(picture_large)", []).then(function (user) {
-                var metadata = { type: 'user', username: user.name, picture: user.picture_large.data.url, facebook_id: user.id };
+                var metadata = { type: 'user', name: user.name, picture: user.picture_large.data.url, facebook_id: user.id };
                 _this.database.login(user.email).then(function (resp) {
                     _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__pages__["b" /* MainPage */]);
                 }).catch(function (e) {
@@ -129,7 +129,7 @@ var WelcomePage = /** @class */ (function () {
             }
         }).catch(function (err) {
             console.error(err);
-            _this.database.signup('convidado', { username: 'Agrofloresteiro' }).then(function (resp) {
+            _this.database.signup('convidado', { name: 'Agrofloresteiro' }).then(function (resp) {
                 if (resp) {
                     _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__pages__["b" /* MainPage */]);
                 }
@@ -139,11 +139,12 @@ var WelcomePage = /** @class */ (function () {
     WelcomePage.prototype.signup = function () {
         this.navCtrl.push('SignupPage');
     };
+    var _a, _b, _c, _d;
     WelcomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-welcome',template:/*ion-inline-start:"/home/diego/dev/agrofloresta/src/pages/welcome/welcome.html"*/'<ion-content scroll="false">\n  <div class="splash-bg"></div>\n  <div class="splash-info">\n    <div class="splash-logo"></div>\n    <div class="splash-intro">\n      <p>Rede Agroflorestal</p>\n      <p><small>Plataforma de aprendizado coletivo</small></p>\n    </div>\n  </div>\n  <div padding>\n    <button ion-button block (click)="login()" class="login">ENTRAR COM E-MAIL</button>\n    <br>\n    <button ion-button block icon-start (click)="facebookLogin()" style="background: #4267b2; padding-top: 4px; text-transform: unset;">\n      <ion-icon name="logo-facebook"></ion-icon>\n      Continue com Facebook\n    </button>\n<!--     <button showWhen="android,ios" ion-button block icon-start (click)="googleLogin()" class="login">\n      <ion-icon name="logo-google"></ion-icon>\n      Entrar com Google\n    </button>\n -->\n    <button ion-button block (click)="guest()" class="login">ENTRAR COMO CONVIDADO</button>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/home/diego/dev/agrofloresta/src/pages/welcome/welcome.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_facebook__["a" /* Facebook */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_google_plus__["a" /* GooglePlus */], __WEBPACK_IMPORTED_MODULE_4__providers__["b" /* Database */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_facebook__["a" /* Facebook */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_facebook__["a" /* Facebook */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_google_plus__["a" /* GooglePlus */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_google_plus__["a" /* GooglePlus */]) === "function" ? _c : Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__providers__["b" /* Database */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers__["b" /* Database */]) === "function" ? _d : Object])
     ], WelcomePage);
     return WelcomePage;
 }());

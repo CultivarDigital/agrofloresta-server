@@ -79,21 +79,43 @@ var LoginPage = /** @class */ (function () {
         this.formBuilder = formBuilder;
         this.utils = utils;
         this.form = formBuilder.group({
-            email: ['diegomr86@gmail.com', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["j" /* Validators */].required]
+            email: ['diegomr86@gmail.com', __WEBPACK_IMPORTED_MODULE_2__angular_forms__["j" /* Validators */].required],
+            password: ['']
         });
         this.form.valueChanges.subscribe(function (v) {
             _this.isReadyToSave = _this.form.valid;
         });
         this.isReadyToSave = this.form.valid;
     }
-    LoginPage.prototype.login = function () {
+    LoginPage.prototype.loadUser = function () {
         var _this = this;
-        this.database.login(this.form.controls.email.value).then(function (resp) {
-            if (resp) {
-                _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5____["b" /* MainPage */]);
+        this.database.loadUser(this.form.controls.email.value).then(function (user) {
+            if (user) {
+                _this.user = user;
             }
         }).catch(function (e) {
-            if (e.name == 'not_found') {
+            if (e.status == 422 && _this.form.controls.email.value) {
+                _this.doSignup();
+            }
+            else {
+                _this.utils.showToast('Erro: ' + JSON.stringify(e), 'error');
+            }
+        });
+    };
+    LoginPage.prototype.login = function () {
+        var _this = this;
+        this.database.login(this.form.controls.email.value).then(function (user) {
+            if (user) {
+                if (user.profileCompleted) {
+                    _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5____["b" /* MainPage */]);
+                }
+                else {
+                    _this.navCtrl.setRoot('ProfileEditPage');
+                }
+            }
+        }).catch(function (e) {
+            console.log(e);
+            if (e.status == 422 && _this.form.controls.email.value) {
                 _this.doSignup();
             }
             else {
@@ -106,22 +128,26 @@ var LoginPage = /** @class */ (function () {
     };
     LoginPage.prototype.doSignup = function () {
         var _this = this;
-        this.database.signup(this.form.controls.email.value).then(function (response) {
-            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5____["b" /* MainPage */]);
+        this.database.signup(this.form.controls.email.value).then(function (user) {
+            if (user) {
+                if (user.profileCompleted) {
+                    _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5____["b" /* MainPage */]);
+                }
+                else {
+                    _this.navCtrl.setRoot('ProfileEditPage');
+                }
+            }
         }).catch(function (e) {
             console.log('signup error', e);
             _this.utils.showToast('Erro: ' + JSON.stringify(e), 'error');
         });
     };
+    var _a, _b, _c, _d, _e;
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-login',template:/*ion-inline-start:"/home/diego/dev/agrofloresta/src/pages/login/login.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Entrar</ion-title>\n  </ion-navbar>\n</ion-header>\n<ion-content padding>\n  <form *ngIf="form" [formGroup]="form" (ngSubmit)="login()">\n    <ion-item>\n      <ion-label stacked>{{ \'EMAIL\' | translate }}</ion-label>\n      <ion-input type="email" formControlName="email"></ion-input>\n    </ion-item>\n    <div>\n      <button ion-button color="primary" block [disabled]="!isReadyToSave">CONTINUAR</button>\n    </div>\n  </form>\n</ion-content>\n'/*ion-inline-end:"/home/diego/dev/agrofloresta/src/pages/login/login.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_3__providers__["b" /* Database */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ToastController */],
-            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormBuilder */],
-            __WEBPACK_IMPORTED_MODULE_4__utils_utils__["a" /* Utils */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]) === "function" ? _a : Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__providers__["b" /* Database */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers__["b" /* Database */]) === "function" ? _b : Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* ToastController */]) === "function" ? _c : Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormBuilder */]) === "function" ? _d : Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__utils_utils__["a" /* Utils */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__utils_utils__["a" /* Utils */]) === "function" ? _e : Object])
     ], LoginPage);
     return LoginPage;
 }());
