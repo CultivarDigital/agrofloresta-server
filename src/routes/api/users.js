@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
   auth = require('../auth'),
   slugify = require('slugify'),
   populate = require('../utils').populate,
+  sendMail = require('../utils').sendMail,
   User = mongoose.model('User'),
   Plant = mongoose.model('Plant'),
   QuizAnswer = mongoose.model('QuizAnswer'),
@@ -68,7 +69,40 @@ router.post('/users', auth.curator, function(req, res, next) {
   }).catch(next);
 });
 
-router.post('/users/register', function(req, res, next) {
+router.post('/users/login', function(req, res, next) {
+  if (!req.body.email) {
+    return res.status(422).json({
+      errors: {
+        email: "campo obrigatório"
+      }
+    });
+  }
+
+  if (!req.body.password) {
+    return res.status(422).json({
+      errors: {
+        password: "campo obrigatório"
+      }
+    });
+  }
+
+  passport.authenticate('local', {
+    session: false
+  }, function(err, user, info) {
+    if (err) {
+      return next(err);
+    }
+
+    if (user) {
+      user.token = user.generateJWT();
+      return res.json(user.toAuthJSON());
+    } else {
+      return res.status(422).json(info);
+    }
+  })(req, res, next);
+});
+
+router.post('/users/register', function(req, res) {
   var user = new User();
 
   user.email = req.body.email
@@ -83,8 +117,30 @@ router.post('/users/register', function(req, res, next) {
 
   user.save().then(function() {
     return res.send(user);
-  }).catch(next);
+  }).catch(e => {
+    res.status(422).json(e)
+  });
 });
+
+router.post('/users/forgot_password', function(req, res) {
+  User.findOne({
+    email: req.body.email
+  }).then(function(user) {
+    if (user && user._id) {
+      var password = Math.random().toString(36).slice(-6)
+      user.setPassword(password);
+      user.save().then(function() {
+         sendMail(req.body.email, "Alteração de senha da Rede Agroflorestal", "<p>Olá, sua nova senha para acessar a Rede Agroflorestal é: <strong>" + password + "</strong></p>").then(info => {
+          return res.send(true);
+        }).catch(e => {
+          res.status(500).json(e)
+        })
+      })
+    } else {
+      return res.status(422).json({ erros: { email: "not_found" } });
+    }
+  })
+})
 
 router.put('/users/:id', auth.authenticated, function(req, res, next) {
   var id = req.params.id
@@ -134,46 +190,12 @@ router.delete('/users/:id', auth.curator, function(req, res) {
   })
 });
 
-router.post('/users/login', function(req, res, next) {
-  if (!req.body.email) {
-    return res.status(422).json({
-      errors: {
-        email: "campo obrigatório"
-      }
-    });
-  }
-
-  if (!req.body.password) {
-    return res.status(422).json({
-      errors: {
-        password: "campo obrigatório"
-      }
-    });
-  }
-
-  passport.authenticate('local', {
-    session: false
-  }, function(err, user, info) {
-    if (err) {
-      return next(err);
-    }
-
-    if (user) {
-      user.token = user.generateJWT();
-      return res.json(user.toAuthJSON());
-    } else {
-      return res.status(422).json(info);
-    }
-  })(req, res, next);
-});
-
 router.get('/is_alive', function(req, res) {
   User.count().exec(function(err) {
     if (!err) {
       res.send('yep')
     }
   });
-
 });
 
 router.get('/fix_users', function(req, res) {

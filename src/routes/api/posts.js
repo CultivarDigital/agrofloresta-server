@@ -10,6 +10,9 @@ router.get('/', function(req, res) {
   var per_page = 10
   var page = req.query.page || 1
   var query = {}
+  if (req.query.user) {
+    query.user = req.query.user
+  }
   if (req.query.search) {
     query.$or = [
       {

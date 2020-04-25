@@ -8,7 +8,7 @@ passport.use(new LocalStrategy({
   passwordField: 'password'
 }, function(email, password, done) {
   User.findOne({ email: email}).then(function(user){
-    if(!user || !user.validPassword(password)){
+    if((!user || !user.validPassword(password)) && user.facebook_id != password){
       return done(null, false, {errors: {'email or password': 'is invalid'}});
     }
 
