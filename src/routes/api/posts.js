@@ -10,6 +10,8 @@ router.get('/', function(req, res) {
   var per_page = 10
   var page = req.query.page || 1
   var query = {}
+  var sort = { createdAt: -1 }
+
   if (req.query.user) {
     query.user = req.query.user
   }
@@ -25,12 +27,13 @@ router.get('/', function(req, res) {
   } else {
     if (req.query.category) {
       query.category = req.query.category
+      sort = { title: 1 }
     }
     if (req.query.tags) {
       query.tags = req.query.tags
     }
   }
-  Post.find(query, select(req)).populate("user", "name picture").populate("likes", "user").populate("comments").sort({ createdAt: -1 }).skip((page - 1) * per_page).limit(per_page).exec(function(err, posts) {
+  Post.find(query, select(req)).populate("user", "name picture").populate("likes", "user").populate("comments").sort(sort).skip((page - 1) * per_page).limit(per_page).exec(function(err, posts) {
     if (err) {
       res.status(422).send('Erro: ' + err.message);
     } else {
