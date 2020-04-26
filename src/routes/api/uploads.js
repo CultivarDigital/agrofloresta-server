@@ -13,7 +13,7 @@ var fs = require("fs"),
 
 const UPLOAD_PATH = 'uploads'
 
-  !fs.existsSync(UPLOAD_PATH) && fs.mkdirSync(UPLOAD_PATH);
+!fs.existsSync(UPLOAD_PATH) && fs.mkdirSync(UPLOAD_PATH);
 !fs.existsSync(UPLOAD_PATH + '/images') && fs.mkdirSync(UPLOAD_PATH + '/images');
 !fs.existsSync(UPLOAD_PATH + '/pdfs') && fs.mkdirSync(UPLOAD_PATH + '/pdfs');
 !fs.existsSync(UPLOAD_PATH + '/thumbs') && fs.mkdirSync(UPLOAD_PATH + '/thumbs');
