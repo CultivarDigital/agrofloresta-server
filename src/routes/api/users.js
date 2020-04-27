@@ -127,19 +127,58 @@ router.post('/users/forgot_password', function(req, res) {
     email: req.body.email
   }).then(function(user) {
     if (user && user._id) {
-      var password = Math.random().toString(36).slice(-6)
-      user.setPassword(password);
+      var code = Math.random().toString(36).slice(-4)
+      user.passwordCode = code
       user.save().then(function() {
-         sendMail(req.body.email, "Alteração de senha da Rede Agroflorestal", "<p>Olá, sua nova senha para acessar a Rede Agroflorestal é: <strong>" + password + "</strong></p>").then(info => {
+        sendMail(req.body.email, "Código para atualização da senha de " + req.body.email, "<p>Olá, seu código para atualizar sua senha na Rede Agroflorestal é: <strong>" + code + "</strong></p>").then(info => {
           return res.send(true);
         }).catch(e => {
           res.status(500).json(e)
         })
       })
     } else {
-      return res.status(422).json({ erros: { email: "not_found" } });
+      return res.status(422).json({
+        erros: {
+          email: "not_found"
+        }
+      });
     }
   })
+})
+
+router.post('/users/validate_code', function(req, res) {
+  console.log('req.body');
+  console.log(req.body);
+  if (req.body.email && req.body.passwordCode) {
+    User.findOne({
+      email: req.body.email,
+      passwordCode: req.body.passwordCode
+    }).then(function(user) {
+      if (user && user._id) {
+        return res.send(true);
+      } else {
+        return res.send(false);
+      }
+    })
+  }
+})
+
+router.post('/users/update_password', function(req, res) {
+  if (req.body.email && req.body.passwordCode && req.body.password) {
+    User.findOne({
+      email: req.body.email,
+      passwordCode: req.body.passwordCode
+    }).then(function(user) {
+      if (user && user._id) {
+        user.setPassword(req.body.password)
+        return user.save().then(u => {
+          return res.send(true);
+        })
+      } else {
+        return res.send(false);
+      }
+    })
+  }
 })
 
 router.put('/users/:id', auth.authenticated, function(req, res, next) {
@@ -302,7 +341,6 @@ router.get('/fix_plants', async function(req, res) {
         plant.slug = slugify(item.scientific_name).toLowerCase()
 
       } else {
-        console.log(item);
         plant.slug = slugify(item.name).toLowerCase()
       }
 

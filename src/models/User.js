@@ -29,7 +29,8 @@ var UserSchema = new mongoose.Schema({
   address: AddressSchema,
   roles: [String],
   facebook_id: String,
-  profileCompleted: Boolean
+  profileCompleted: Boolean,
+  passwordCode: String
 }, {
   timestamps: true,
   toJSON: { virtuals: true }

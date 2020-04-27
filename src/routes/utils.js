@@ -25,21 +25,30 @@ module.exports = {
     return select
   },
   sendMail(to, subject, message) {
-    let transporter = nodemailer.createTransport({
-      host: process.env.SMTP_SERVER,
-      port: 465,
-      secure: true,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-      }
-    });
+    if (process.env.SMTP_SERVER) {
+      let transporter = nodemailer.createTransport({
+        host: process.env.SMTP_SERVER,
+        port: 465,
+        secure: true,
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS
+        }
+      });
 
-    return transporter.sendMail({
-      from: process.env.SMTP_FROM,
-      to: to,
-      subject: subject,
-      html: message
-    });
+      return transporter.sendMail({
+        from: process.env.SMTP_FROM,
+        to: to,
+        subject: subject,
+        html: message
+      });
+    } else {
+      console.log("XXXXXXXXXX EMAIL MESSAGE XXXXXXXXXX")
+      console.log(to)
+      console.log(subject)
+      console.log(message)
+      console.log("XXXXXXXXXX EMAIL MESSAGE XXXXXXXXXX")
+      return new Promise((resolve, reject) => { resolve(false) })
+    }
   }
 }
