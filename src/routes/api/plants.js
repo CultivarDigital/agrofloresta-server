@@ -40,6 +40,49 @@ router.get('/', function(req, res) {
   });
 });
 
+router.get('/populate_from_quiz_answers', function(req, res) {
+  Plant.find().populate('quiz_answers').exec(function(err, plants) {
+    var plants_with_answers = {}
+    if (err) {
+      res.status(422).send('Erro: ' + err.message);
+    } else {
+      var plants = plants.sort(function (one, other) {
+         return one.quiz_answers.length - other.quiz_answers.length;
+      }).reverse();
+
+      plants.forEach(plant => {
+        if (plant.quiz_answers && plant.quiz_answers.length) {
+          var sum = {}
+          plant.quiz_answers.forEach(answer => {
+            if (!sum[answer.field]) {
+              sum[answer.field] = {}
+            }
+            if (sum[answer.field][answer.answer]) {
+              sum[answer.field][answer.answer] += 1
+            } else {
+              sum[answer.field][answer.answer] = 1
+            }
+          })
+          Object.keys(sum).forEach(field => {
+            qtd = 0
+            Object.keys(sum[field]).forEach(key => {
+              if (sum[field][key] > qtd) {
+                sum['_'+field] = key
+                qtd = sum[field][key]
+              }
+
+            })
+            plant[field] = sum['_'+field]
+          })
+          plants_with_answers[plant.name] = sum
+          plant.save()
+        }
+      })
+    }
+    res.send(plants_with_answers);
+  })
+});
+
 router.get('/slug', function(req, res) {
   Plant.findOne({
     slug: slugify(req.query.name).toLowerCase()
@@ -112,5 +155,6 @@ router.delete('/:id', auth.authenticated, function(req, res) {
   })
 
 });
+
 
 module.exports = router;
