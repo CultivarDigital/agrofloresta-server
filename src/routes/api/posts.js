@@ -27,7 +27,11 @@ router.get('/', function(req, res) {
   } else {
     if (req.query.category) {
       query.category = req.query.category
-      sort = { title: 1 }
+      if (query.category == 'event') {
+        sort = { start_time: -1 }
+      } else {
+        sort = { title: 1 }
+      }
     }
     if (req.query.tags) {
       query.tags = req.query.tags
