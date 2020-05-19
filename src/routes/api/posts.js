@@ -24,18 +24,17 @@ router.get('/', function(req, res) {
         'content': { $regex: req.query.search, $options: "i" }
       }
     ]
-  } else {
-    if (req.query.category) {
-      query.category = req.query.category
-      if (query.category == 'event') {
-        sort = { start_time: -1 }
-      } else {
-        sort = { title: 1 }
-      }
+  }
+  if (req.query.category) {
+    query.category = req.query.category
+    if (query.category == 'event') {
+      sort = { start_time: -1 }
+    } else {
+      sort = { title: 1 }
     }
-    if (req.query.tags) {
-      query.tags = req.query.tags
-    }
+  }
+  if (req.query.tag) {
+    query.tags = req.query.tag
   }
   Post.find(query, select(req)).populate("user", "name picture").populate("likes", "user").populate("comments").sort(sort).skip((page - 1) * per_page).limit(per_page).exec(function(err, posts) {
     if (err) {
