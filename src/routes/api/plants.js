@@ -98,7 +98,7 @@ router.get('/slug', function(req, res) {
 router.get('/:id', function(req, res) {
   Plant.findOne({
     _id: req.params.id
-  }).populate("user", "name picture").exec(function(err, plant) {
+  }).populate("user", "name picture").populate("quiz_answers").exec(function(err, plant) {
     if (err) {
       res.status(422).send('Erro: ' + err.message);
     } else {
