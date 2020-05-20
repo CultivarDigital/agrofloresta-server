@@ -1,1 +1,83 @@
-webpackJsonp([29],{441:function(l,n,u){"use strict";function o(l){return a._27(0,[(l()(),a._3(0,0,null,null,44,"ion-content",[["scroll","false"]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,k.b,k.a)),a._2(1,4374528,null,0,C.a,[R.a,y.a,w.a,a.l,a.C,P.a,A.a,a.x,[2,E.a],[2,M.a]],null,null),(l()(),a._25(-1,1,["\n  "])),(l()(),a._3(3,0,null,1,0,"div",[["class","splash-bg"]],null,null,null,null,null)),(l()(),a._25(-1,1,["\n  "])),(l()(),a._3(5,0,null,1,13,"div",[["class","splash-info"]],null,null,null,null,null)),(l()(),a._25(-1,null,["\n    "])),(l()(),a._3(7,0,null,null,0,"div",[["class","splash-logo"]],null,null,null,null,null)),(l()(),a._25(-1,null,["\n    "])),(l()(),a._3(9,0,null,null,8,"div",[["class","splash-intro"]],null,null,null,null,null)),(l()(),a._25(-1,null,["\n      "])),(l()(),a._3(11,0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._25(-1,null,["Rede Agroflorestal"])),(l()(),a._25(-1,null,["\n      "])),(l()(),a._3(14,0,null,null,2,"p",[],null,null,null,null,null)),(l()(),a._3(15,0,null,null,1,"small",[],null,null,null,null,null)),(l()(),a._25(-1,null,["Plataforma de aprendizado coletivo"])),(l()(),a._25(-1,null,["\n    "])),(l()(),a._25(-1,null,["\n  "])),(l()(),a._25(-1,1,["\n  "])),(l()(),a._3(20,0,null,1,23,"div",[["padding",""]],null,null,null,null,null)),(l()(),a._25(-1,null,["\n    "])),(l()(),a._3(22,0,null,null,2,"button",[["block",""],["class","login"],["ion-button",""]],null,[[null,"click"]],function(l,n,u){var o=!0;if("click"===n){o=!1!==l.component.login()&&o}return o},O.b,O.a)),a._2(23,1097728,null,0,L.a,[[8,""],R.a,a.l,a.C],{block:[0,"block"]},null),(l()(),a._25(-1,0,["ENTRAR COM E-MAIL"])),(l()(),a._25(-1,null,["\n    "])),(l()(),a._3(26,0,null,null,0,"br",[],null,null,null,null,null)),(l()(),a._25(-1,null,["\n    "])),(l()(),a._3(28,0,null,null,5,"button",[["block",""],["icon-start",""],["ion-button",""],["style","background: #4267b2; padding-top: 4px; text-transform: unset;"]],null,[[null,"click"]],function(l,n,u){var o=!0;if("click"===n){o=!1!==l.component.facebookLogin()&&o}return o},O.b,O.a)),a._2(29,1097728,null,0,L.a,[[8,""],R.a,a.l,a.C],{block:[0,"block"]},null),(l()(),a._25(-1,0,["\n      "])),(l()(),a._3(31,0,null,0,1,"ion-icon",[["name","logo-facebook"],["role","img"]],[[2,"hide",null]],null,null,null,null)),a._2(32,147456,null,0,N.a,[R.a,a.l,a.C],{name:[0,"name"]},null),(l()(),a._25(-1,0,["\n      Continue com Facebook\n    "])),(l()(),a._25(-1,null,["\n    "])),(l()(),a._3(35,0,null,null,2,"button",[["block",""],["class","login"],["ion-button",""]],null,[[null,"click"]],function(l,n,u){var o=!0;if("click"===n){o=!1!==l.component.register()&&o}return o},O.b,O.a)),a._2(36,1097728,null,0,L.a,[[8,""],R.a,a.l,a.C],{block:[0,"block"]},null),(l()(),a._25(-1,0,["CADASTRE-SE"])),(l()(),a._25(-1,null,["\n"])),(l()(),a._25(-1,null,["\n    "])),(l()(),a._3(40,0,null,null,2,"button",[["block",""],["class","login"],["ion-button",""]],null,[[null,"click"]],function(l,n,u){var o=!0;if("click"===n){o=!1!==l.component.guest()&&o}return o},O.b,O.a)),a._2(41,1097728,null,0,L.a,[[8,""],R.a,a.l,a.C],{block:[0,"block"]},null),(l()(),a._25(-1,0,["ENTRAR COMO CONVIDADO"])),(l()(),a._25(-1,null,["\n  "])),(l()(),a._25(-1,1,["\n"])),(l()(),a._25(-1,null,["\n"]))],function(l,n){l(n,23,0,"");l(n,29,0,"");l(n,32,0,"logo-facebook");l(n,36,0,"");l(n,41,0,"")},function(l,n){l(n,0,0,a._15(n,1).statusbarPadding,a._15(n,1)._hasRefresher);l(n,31,0,a._15(n,32)._hidden)})}Object.defineProperty(n,"__esModule",{value:!0});var a=u(0),t=(u(1),u(106)),e=(u(51),u(190)),i=u(191),c=(u(166),u(281)),r=function(){function l(l,n,u,o){this.navCtrl=l,this.fb=n,this.googlePlus=u,this.database=o}return l.prototype.facebookLogin=function(){var l=this;this.fb.login(["public_profile","email"]).then(function(n){l.fb.api("me?fields=id,name,email,first_name,picture.width(320).height(320).as(picture_large)",[]).then(function(n){var u={email:n.email,name:n.name,picture:n.picture_large.data.url,facebook_id:n.id};l.database.login({email:n.email,password:"fbid_"+n.id}).then(function(n){l.navCtrl.setRoot(c.b)}).catch(function(n){u.password=Math.random().toString(36).slice(-6),l.database.register(u).then(function(n){n&&l.navCtrl.setRoot(c.b)})})})}).catch(function(l){return console.log("Error logging into Facebook",l)})},l.prototype.googleLogin=function(){var l=this;this.googlePlus.login().then(function(n){l.database.register({type:"user",email:n.email,name:n.displayName,picture:n.imageUrl,google_id:n.userId}).then(function(n){l.navCtrl.setRoot(c.b)}).catch(function(u){"conflict"==u.name&&l.database.login(n.email).then(function(n){n&&l.navCtrl.setRoot(c.b)})})}).catch(function(l){return console.error(l)})},l.prototype.login=function(){this.navCtrl.push("LoginPage")},l.prototype.guest=function(){var l=this;this.database.login({email:"convidado@redeagroflorestal.com.br",password:"agrofloresta"}).then(function(n){n&&l.navCtrl.setRoot(c.b)}).catch(function(n){console.error(n),l.database.register({email:"convidado@redeagroflorestal.com.br",password:"agrofloresta",name:"Convidado"}).then(function(n){n&&l.navCtrl.setRoot(c.b)})})},l.prototype.register=function(){this.navCtrl.push("RegisterPage")},l}(),s=function(){return function(){}}(),_=u(268),b=u(269),f=u(270),g=u(271),d=u(272),p=u(273),h=u(274),m=u(275),v=u(276),k=u(277),C=u(29),R=u(2),y=u(5),w=u(13),P=u(12),A=u(33),E=u(6),M=u(28),O=u(52),L=u(26),N=u(58),x=u(68),D=a._1({encapsulation:2,styles:[],data:{}}),F=a.Z("page-welcome",r,function(l){return a._27(0,[(l()(),a._3(0,0,null,null,1,"page-welcome",[],null,null,null,o,D)),a._2(1,49152,null,0,r,[M.a,e.a,i.a,x.a],null,null)],null,null)},{},{},[]),I=u(15),S=u(24),T=u(72),W=u(73),j=u(75),z=u(74),J=u(37),U=u(110),V=u(168),Z=u(53);u.d(n,"WelcomePageModuleNgFactory",function(){return q});var q=a._0(s,[],function(l){return a._11([a._12(512,a.k,a.W,[[8,[_.a,b.a,f.a,g.a,d.a,p.a,h.a,m.a,v.a,F]],[3,a.k],a.v]),a._12(4608,I.m,I.l,[a.t,[2,I.w]]),a._12(4608,S.y,S.y,[]),a._12(4608,S.e,S.e,[]),a._12(4608,T.b,T.a,[]),a._12(4608,W.a,W.b,[]),a._12(4608,j.b,j.a,[]),a._12(4608,z.b,z.a,[]),a._12(4608,J.a,J.a,[U.a,T.b,W.a,j.b,z.b,J.b,J.c]),a._12(512,I.c,I.c,[]),a._12(512,S.w,S.w,[]),a._12(512,S.l,S.l,[]),a._12(512,S.u,S.u,[]),a._12(512,V.a,V.a,[]),a._12(512,V.b,V.b,[]),a._12(512,t.a,t.a,[]),a._12(512,s,s,[]),a._12(256,Z.a,r,[]),a._12(256,J.c,void 0,[]),a._12(256,J.b,void 0,[])])})}});
+webpackJsonp([29],{
+
+/***/ 454:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContentPageModule", function() { return ContentPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__content__ = __webpack_require__(661);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var ContentPageModule = /** @class */ (function () {
+    function ContentPageModule() {
+    }
+    ContentPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_3__content__["a" /* ContentPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_3__content__["a" /* ContentPage */]),
+                __WEBPACK_IMPORTED_MODULE_1__ngx_translate_core__["b" /* TranslateModule */].forChild()
+            ],
+            exports: [
+                __WEBPACK_IMPORTED_MODULE_3__content__["a" /* ContentPage */]
+            ]
+        })
+    ], ContentPageModule);
+    return ContentPageModule;
+}());
+
+//# sourceMappingURL=content.module.js.map
+
+/***/ }),
+
+/***/ 661:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContentPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(42);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ContentPage = /** @class */ (function () {
+    function ContentPage(navCtrl) {
+        this.navCtrl = navCtrl;
+    }
+    ContentPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-content',template:/*ion-inline-start:"/home/diego/dev/agrofloresta/src/pages/content/content.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Content\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <p>\n    This is a perfect starting point for a page with primarily text content. The body is padded nicely and ready for prose.\n  </p>\n</ion-content>'/*ion-inline-end:"/home/diego/dev/agrofloresta/src/pages/content/content.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */]])
+    ], ContentPage);
+    return ContentPage;
+}());
+
+//# sourceMappingURL=content.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=29.js.map
