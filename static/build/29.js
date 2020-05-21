@@ -1,1 +1,92 @@
-webpackJsonp([29],{441:function(l,n,u){"use strict";function o(l){return a._27(0,[(l()(),a._3(0,0,null,null,44,"ion-content",[["scroll","false"]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,k.b,k.a)),a._2(1,4374528,null,0,C.a,[R.a,y.a,w.a,a.l,a.C,P.a,A.a,a.x,[2,E.a],[2,M.a]],null,null),(l()(),a._25(-1,1,["\n  "])),(l()(),a._3(3,0,null,1,0,"div",[["class","splash-bg"]],null,null,null,null,null)),(l()(),a._25(-1,1,["\n  "])),(l()(),a._3(5,0,null,1,13,"div",[["class","splash-info"]],null,null,null,null,null)),(l()(),a._25(-1,null,["\n    "])),(l()(),a._3(7,0,null,null,0,"div",[["class","splash-logo"]],null,null,null,null,null)),(l()(),a._25(-1,null,["\n    "])),(l()(),a._3(9,0,null,null,8,"div",[["class","splash-intro"]],null,null,null,null,null)),(l()(),a._25(-1,null,["\n      "])),(l()(),a._3(11,0,null,null,1,"p",[],null,null,null,null,null)),(l()(),a._25(-1,null,["Rede Agroflorestal"])),(l()(),a._25(-1,null,["\n      "])),(l()(),a._3(14,0,null,null,2,"p",[],null,null,null,null,null)),(l()(),a._3(15,0,null,null,1,"small",[],null,null,null,null,null)),(l()(),a._25(-1,null,["Plataforma de aprendizado coletivo"])),(l()(),a._25(-1,null,["\n    "])),(l()(),a._25(-1,null,["\n  "])),(l()(),a._25(-1,1,["\n  "])),(l()(),a._3(20,0,null,1,23,"div",[["padding",""]],null,null,null,null,null)),(l()(),a._25(-1,null,["\n    "])),(l()(),a._3(22,0,null,null,2,"button",[["block",""],["class","login"],["ion-button",""]],null,[[null,"click"]],function(l,n,u){var o=!0;if("click"===n){o=!1!==l.component.login()&&o}return o},O.b,O.a)),a._2(23,1097728,null,0,L.a,[[8,""],R.a,a.l,a.C],{block:[0,"block"]},null),(l()(),a._25(-1,0,["ENTRAR COM E-MAIL"])),(l()(),a._25(-1,null,["\n    "])),(l()(),a._3(26,0,null,null,0,"br",[],null,null,null,null,null)),(l()(),a._25(-1,null,["\n    "])),(l()(),a._3(28,0,null,null,5,"button",[["block",""],["icon-start",""],["ion-button",""],["style","background: #4267b2; padding-top: 4px; text-transform: unset;"]],null,[[null,"click"]],function(l,n,u){var o=!0;if("click"===n){o=!1!==l.component.facebookLogin()&&o}return o},O.b,O.a)),a._2(29,1097728,null,0,L.a,[[8,""],R.a,a.l,a.C],{block:[0,"block"]},null),(l()(),a._25(-1,0,["\n      "])),(l()(),a._3(31,0,null,0,1,"ion-icon",[["name","logo-facebook"],["role","img"]],[[2,"hide",null]],null,null,null,null)),a._2(32,147456,null,0,N.a,[R.a,a.l,a.C],{name:[0,"name"]},null),(l()(),a._25(-1,0,["\n      Continue com Facebook\n    "])),(l()(),a._25(-1,null,["\n    "])),(l()(),a._3(35,0,null,null,2,"button",[["block",""],["class","login"],["ion-button",""]],null,[[null,"click"]],function(l,n,u){var o=!0;if("click"===n){o=!1!==l.component.register()&&o}return o},O.b,O.a)),a._2(36,1097728,null,0,L.a,[[8,""],R.a,a.l,a.C],{block:[0,"block"]},null),(l()(),a._25(-1,0,["CADASTRE-SE"])),(l()(),a._25(-1,null,["\n"])),(l()(),a._25(-1,null,["\n    "])),(l()(),a._3(40,0,null,null,2,"button",[["block",""],["class","login"],["ion-button",""]],null,[[null,"click"]],function(l,n,u){var o=!0;if("click"===n){o=!1!==l.component.guest()&&o}return o},O.b,O.a)),a._2(41,1097728,null,0,L.a,[[8,""],R.a,a.l,a.C],{block:[0,"block"]},null),(l()(),a._25(-1,0,["ENTRAR COMO CONVIDADO"])),(l()(),a._25(-1,null,["\n  "])),(l()(),a._25(-1,1,["\n"])),(l()(),a._25(-1,null,["\n"]))],function(l,n){l(n,23,0,"");l(n,29,0,"");l(n,32,0,"logo-facebook");l(n,36,0,"");l(n,41,0,"")},function(l,n){l(n,0,0,a._15(n,1).statusbarPadding,a._15(n,1)._hasRefresher);l(n,31,0,a._15(n,32)._hidden)})}Object.defineProperty(n,"__esModule",{value:!0});var a=u(0),t=(u(1),u(106)),e=(u(51),u(190)),i=u(191),c=(u(166),u(281)),r=function(){function l(l,n,u,o){this.navCtrl=l,this.fb=n,this.googlePlus=u,this.database=o}return l.prototype.facebookLogin=function(){var l=this;this.fb.login(["public_profile","email"]).then(function(n){l.fb.api("me?fields=id,name,email,first_name,picture.width(320).height(320).as(picture_large)",[]).then(function(n){var u={email:n.email,name:n.name,picture:n.picture_large.data.url,facebook_id:n.id};l.database.login({email:n.email,password:"fbid_"+n.id}).then(function(n){l.navCtrl.setRoot(c.b)}).catch(function(n){u.password=Math.random().toString(36).slice(-6),l.database.register(u).then(function(n){n&&l.navCtrl.setRoot(c.b)})})})}).catch(function(l){return console.log("Error logging into Facebook",l)})},l.prototype.googleLogin=function(){var l=this;this.googlePlus.login().then(function(n){l.database.register({type:"user",email:n.email,name:n.displayName,picture:n.imageUrl,google_id:n.userId}).then(function(n){l.navCtrl.setRoot(c.b)}).catch(function(u){"conflict"==u.name&&l.database.login(n.email).then(function(n){n&&l.navCtrl.setRoot(c.b)})})}).catch(function(l){return console.error(l)})},l.prototype.login=function(){this.navCtrl.push("LoginPage")},l.prototype.guest=function(){var l=this;this.database.login({email:"convidado@redeagroflorestal.com.br",password:"agrofloresta"}).then(function(n){n&&l.navCtrl.setRoot(c.b)}).catch(function(n){console.error(n),l.database.register({email:"convidado@redeagroflorestal.com.br",password:"agrofloresta",name:"Convidado"}).then(function(n){n&&l.navCtrl.setRoot(c.b)})})},l.prototype.register=function(){this.navCtrl.push("RegisterPage")},l}(),s=function(){return function(){}}(),_=u(268),b=u(269),f=u(270),g=u(271),d=u(272),p=u(273),h=u(274),m=u(275),v=u(276),k=u(277),C=u(29),R=u(2),y=u(5),w=u(13),P=u(12),A=u(33),E=u(6),M=u(28),O=u(52),L=u(26),N=u(58),x=u(68),D=a._1({encapsulation:2,styles:[],data:{}}),F=a.Z("page-welcome",r,function(l){return a._27(0,[(l()(),a._3(0,0,null,null,1,"page-welcome",[],null,null,null,o,D)),a._2(1,49152,null,0,r,[M.a,e.a,i.a,x.a],null,null)],null,null)},{},{},[]),I=u(15),S=u(24),T=u(72),W=u(73),j=u(75),z=u(74),J=u(37),U=u(110),V=u(168),Z=u(53);u.d(n,"WelcomePageModuleNgFactory",function(){return q});var q=a._0(s,[],function(l){return a._11([a._12(512,a.k,a.W,[[8,[_.a,b.a,f.a,g.a,d.a,p.a,h.a,m.a,v.a,F]],[3,a.k],a.v]),a._12(4608,I.m,I.l,[a.t,[2,I.w]]),a._12(4608,S.y,S.y,[]),a._12(4608,S.e,S.e,[]),a._12(4608,T.b,T.a,[]),a._12(4608,W.a,W.b,[]),a._12(4608,j.b,j.a,[]),a._12(4608,z.b,z.a,[]),a._12(4608,J.a,J.a,[U.a,T.b,W.a,j.b,z.b,J.b,J.c]),a._12(512,I.c,I.c,[]),a._12(512,S.w,S.w,[]),a._12(512,S.l,S.l,[]),a._12(512,S.u,S.u,[]),a._12(512,V.a,V.a,[]),a._12(512,V.b,V.b,[]),a._12(512,t.a,t.a,[]),a._12(512,s,s,[]),a._12(256,Z.a,r,[]),a._12(256,J.c,void 0,[]),a._12(256,J.b,void 0,[])])})}});
+webpackJsonp([29],{
+
+/***/ 454:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AboutPageModule", function() { return AboutPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__about__ = __webpack_require__(660);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var AboutPageModule = /** @class */ (function () {
+    function AboutPageModule() {
+    }
+    AboutPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__about__["a" /* AboutPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__about__["a" /* AboutPage */]),
+            ],
+        })
+    ], AboutPageModule);
+    return AboutPageModule;
+}());
+
+//# sourceMappingURL=about.module.js.map
+
+/***/ }),
+
+/***/ 660:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the AboutPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var AboutPage = /** @class */ (function () {
+    function AboutPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    AboutPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad AboutPage');
+    };
+    AboutPage.prototype.openPage = function (page, params) {
+        // Reset the content nav to have just this page
+        // we wouldn't want the back button to show in this scenario
+        this.navCtrl.push(page, params);
+    };
+    AboutPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-about',template:/*ion-inline-start:"/home/diego/dev/agrofloresta/src/pages/about/about.html"*/'<!--\n  Generated template for the AboutPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-buttons left>\n      <button ion-button icon-only menuToggle>\n        <ion-icon name="menu"></ion-icon>\n      </button>\n    </ion-buttons>\n\n    <ion-title>Sobre</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n<h2> Rede Agroflorestal </h2>\n<p>Plataforma de construção colaborativa de conhecimento sobre Agroflorestas.</p>\n<br>\n\n<img img-cache src="https://ipoema.org.br/wp-content/uploads/2018/08/agrofloresta.png" width="590" />\n\n<h5> Objetivo </h5>\n\nCriar uma base de dados de conhecimento coletivo sobre agrofloresta que colabore para a difusão de conhecimentos desta forma de se fazer agricultura com sustentabilidade e ofereça ferramentas que os agricultores poderão utilizar na implementação e manutenção destes sistemas.\n\n<h5> Sobre a Plataforma </h5>\n<ul>\n	<li>Responsabilidade compartilhada: Todo o conteúdo é criado, mantido e/ou alterado pela própria comunidade;</li>\n	<li>Qualquer pessoa pode criar ou alterar qualquer conteúdo (exceto comentários);</li>\n	<li>O Código fonte aberto (open source);</li>\n	<li>Informações essênciais devem estar disponíveis mesmo que o usuário não esteja conectado (offline first);</li>\n	<li>Só é permitida a veiculação de publicidade sobre cursos, atividades e publicações relacionadas à Agrofloresta;</li>\n	<li>Deve ser acessível em qualquer plataforma Web, Android e IOS;</li>\n	<li>Pode servir de base para criação de novas tecnologias relacionadas.</li>\n	<li>Disponibilizar uma api para que outras tecnologias possam usar esta base de dados.</li>\n</ul>\n\n<h5> Como colaborar </h5>\n\nVocê pode ajudar esse projeto das seguintes formas:\n\n<ul>\n	<li>Faça sua propria agrofloresta;</li>\n	<li>Crie e ajude a melhorar o conteúdo da plataforma;</li>\n	<li><a href="https://github.com/diegomr86/agrofloresta" target="_blank">Melhore o código ou design do aplicativo; </a></li>\n	<li><a href="https://github.com/diegomr86/agrofloresta/issues/new" target="_blank">Informe qualquer problema;</a></li>\n	<li><a href="https://github.com/diegomr86/agrofloresta/issues/new" target="_blank">Dê uma dica ou idéia;</a></li>\n	<!-- <li><a (click)="openPage(\'SharePage\')">Compartilhe com seus amigos</a></li> -->\n	<li><a (click)="openPage(\'DonatePage\')">Faça uma doação;</a></li>\n	<li><a href="https://diegomr86.github.io" target="_blank">Troque idéias conosco!</a></li>\n</ul>\n\n<h5> Criado por </h5>\n\n<p><img img-cache style="width: 100px" src="https://diegomr86.github.io/assets/images/profile.jpg"></p>\n<p><strong>Diego M. Rodrigues</strong></p>\n<p>Programador focado no desenvolvimento projetos de código aberto e com objetivo resolver problemas sociais e ambientais baseados na sustentabilidade.</p>\n<p>\n	<a href="https://diegomr86.github.io" target="_blank">Site</a>\n	<br>\n	<a href="mailto:diegomr86.gmail.com" target="_blank">diegomr86.gmail.com</a>\n</p>\n\n<h5> Licença </h5>\n\n<p>Este software está licenciado sobre a licença:</p>\n\n<p> <strong>Creative Commons (CC BY-NC-SA 4.0) (LICENSE)</strong> </p>\n\n<img style="width: 200px" src="https://br.creativecommons.org/wp-content/uploads/2015/04/by-nc-sa.jpg" />\n\n</ion-content>\n'/*ion-inline-end:"/home/diego/dev/agrofloresta/src/pages/about/about.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavParams */]])
+    ], AboutPage);
+    return AboutPage;
+}());
+
+//# sourceMappingURL=about.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=29.js.map

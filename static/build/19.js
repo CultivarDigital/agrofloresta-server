@@ -1,1 +1,142 @@
-webpackJsonp([19],{424:function(l,n,u){"use strict";function t(l){return o._27(0,[(l()(),o._3(0,0,null,null,58,"form",[["novalidate",""]],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],[[null,"ngSubmit"],[null,"submit"],[null,"reset"]],function(l,n,u){var t=!0,a=l.component;if("submit"===n){t=!1!==o._15(l,2).onSubmit(u)&&t}if("reset"===n){t=!1!==o._15(l,2).onReset()&&t}if("ngSubmit"===n){t=!1!==a.login()&&t}return t},null,null)),o._2(1,16384,null,0,i.x,[],null,null),o._2(2,540672,null,0,i.j,[[8,null],[8,null]],{form:[0,"form"]},{ngSubmit:"ngSubmit"}),o._21(2048,null,i.b,null,[i.j]),o._2(4,16384,null,0,i.r,[i.b],null,null),(l()(),o._25(-1,null,["\n    "])),(l()(),o._3(6,0,null,null,16,"ion-item",[["class","item item-block"]],null,null,null,v.b,v.a)),o._2(7,1097728,null,3,y.a,[I.a,w.a,o.l,o.C,[2,x.a]],null,null),o._23(335544320,1,{contentLabel:0}),o._23(603979776,2,{_buttons:1}),o._23(603979776,3,{_icons:1}),o._2(11,16384,null,0,P.a,[],null,null),(l()(),o._25(-1,2,["\n      "])),(l()(),o._3(13,0,null,1,2,"ion-label",[["stacked",""]],null,null,null,null,null)),o._2(14,16384,[[1,4]],0,S.a,[w.a,o.l,o.C,[8,null],[8,""],[8,null],[8,null]],null,null),(l()(),o._25(-1,null,["Email:"])),(l()(),o._25(-1,2,["\n      "])),(l()(),o._3(17,0,null,3,4,"ion-input",[["formControlName","email"],["type","email"]],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],null,null,T.b,T.a)),o._2(18,671744,null,0,i.h,[[3,i.b],[8,null],[8,null],[8,null]],{name:[0,"name"]},null),o._21(2048,null,i.p,null,[i.h]),o._2(20,16384,null,0,i.q,[i.p],null,null),o._2(21,5423104,null,0,D.a,[w.a,R.a,I.a,E.a,o.l,o.C,[2,M.a],[2,y.a],[2,i.p],A.a],{type:[0,"type"]},null),(l()(),o._25(-1,2,["\n    "])),(l()(),o._25(-1,null,["\n    "])),(l()(),o._3(24,0,null,null,16,"ion-item",[["class","item item-block"]],null,null,null,v.b,v.a)),o._2(25,1097728,null,3,y.a,[I.a,w.a,o.l,o.C,[2,x.a]],null,null),o._23(335544320,4,{contentLabel:0}),o._23(603979776,5,{_buttons:1}),o._23(603979776,6,{_icons:1}),o._2(29,16384,null,0,P.a,[],null,null),(l()(),o._25(-1,2,["\n      "])),(l()(),o._3(31,0,null,1,2,"ion-label",[["stacked",""]],null,null,null,null,null)),o._2(32,16384,[[4,4]],0,S.a,[w.a,o.l,o.C,[8,null],[8,""],[8,null],[8,null]],null,null),(l()(),o._25(-1,null,["Senha:"])),(l()(),o._25(-1,2,["\n      "])),(l()(),o._3(35,0,null,3,4,"ion-input",[["formControlName","password"],["type","password"]],[[2,"ng-untouched",null],[2,"ng-touched",null],[2,"ng-pristine",null],[2,"ng-dirty",null],[2,"ng-valid",null],[2,"ng-invalid",null],[2,"ng-pending",null]],null,null,T.b,T.a)),o._2(36,671744,null,0,i.h,[[3,i.b],[8,null],[8,null],[8,null]],{name:[0,"name"]},null),o._21(2048,null,i.p,null,[i.h]),o._2(38,16384,null,0,i.q,[i.p],null,null),o._2(39,5423104,null,0,D.a,[w.a,R.a,I.a,E.a,o.l,o.C,[2,M.a],[2,y.a],[2,i.p],A.a],{type:[0,"type"]},null),(l()(),o._25(-1,2,["\n    "])),(l()(),o._25(-1,null,["\n    "])),(l()(),o._3(42,0,null,null,15,"div",[],null,null,null,null,null)),(l()(),o._25(-1,null,["\n      "])),(l()(),o._3(44,0,null,null,2,"button",[["block",""],["color","primary"],["ion-button",""]],[[8,"disabled",0]],null,null,J.b,J.a)),o._2(45,1097728,null,0,N.a,[[8,""],w.a,o.l,o.C],{color:[0,"color"],block:[1,"block"]},null),(l()(),o._25(-1,0,["ENTRAR"])),(l()(),o._25(-1,null,["\n      "])),(l()(),o._3(48,0,null,null,0,"br",[],null,null,null,null,null)),(l()(),o._25(-1,null,["\n      "])),(l()(),o._3(50,0,null,null,2,"button",[["block",""],["color","light"],["ion-button",""],["type","button"]],null,[[null,"click"]],function(l,n,u){var t=!0;if("click"===n){t=!1!==l.component.forgotPassword()&&t}return t},J.b,J.a)),o._2(51,1097728,null,0,N.a,[[8,""],w.a,o.l,o.C],{color:[0,"color"],block:[1,"block"]},null),(l()(),o._25(-1,0,["ESQUECI MINHA SENHA"])),(l()(),o._25(-1,null,["\n      "])),(l()(),o._3(54,0,null,null,2,"button",[["block",""],["color","light"],["ion-button",""],["type","button"]],null,[[null,"click"]],function(l,n,u){var t=!0;if("click"===n){t=!1!==l.component.register()&&t}return t},J.b,J.a)),o._2(55,1097728,null,0,N.a,[[8,""],w.a,o.l,o.C],{color:[0,"color"],block:[1,"block"]},null),(l()(),o._25(-1,0,["CADASTRAR"])),(l()(),o._25(-1,null,["\n    "])),(l()(),o._25(-1,null,["\n  "]))],function(l,n){l(n,2,0,n.component.form);l(n,18,0,"email");l(n,21,0,"email");l(n,36,0,"password");l(n,39,0,"password");l(n,45,0,"primary","");l(n,51,0,"light","");l(n,55,0,"light","")},function(l,n){var u=n.component;l(n,0,0,o._15(n,4).ngClassUntouched,o._15(n,4).ngClassTouched,o._15(n,4).ngClassPristine,o._15(n,4).ngClassDirty,o._15(n,4).ngClassValid,o._15(n,4).ngClassInvalid,o._15(n,4).ngClassPending);l(n,17,0,o._15(n,20).ngClassUntouched,o._15(n,20).ngClassTouched,o._15(n,20).ngClassPristine,o._15(n,20).ngClassDirty,o._15(n,20).ngClassValid,o._15(n,20).ngClassInvalid,o._15(n,20).ngClassPending);l(n,35,0,o._15(n,38).ngClassUntouched,o._15(n,38).ngClassTouched,o._15(n,38).ngClassPristine,o._15(n,38).ngClassDirty,o._15(n,38).ngClassValid,o._15(n,38).ngClassInvalid,o._15(n,38).ngClassPending);l(n,44,0,!u.isReadyToSave)})}function a(l){return o._27(0,[(l()(),o._3(0,0,null,null,10,"ion-header",[],null,null,null,null,null)),o._2(1,16384,null,0,B.a,[w.a,o.l,o.C,[2,U.a]],null,null),(l()(),o._25(-1,null,["\n  "])),(l()(),o._3(3,0,null,null,6,"ion-navbar",[["class","toolbar"]],[[8,"hidden",0],[2,"statusbar-padding",null]],null,null,Y.b,Y.a)),o._2(4,49152,null,0,q.a,[E.a,[2,U.a],[2,F.a],w.a,o.l,o.C],null,null),(l()(),o._25(-1,3,["\n    "])),(l()(),o._3(6,0,null,3,2,"ion-title",[],null,null,null,j.b,j.a)),o._2(7,49152,null,0,L.a,[w.a,o.l,o.C,[2,O.a],[2,q.a]],null,null),(l()(),o._25(-1,0,["Entrar"])),(l()(),o._25(-1,3,["\n  "])),(l()(),o._25(-1,null,["\n"])),(l()(),o._25(-1,null,["\n"])),(l()(),o._3(12,0,null,null,5,"ion-content",[["padding",""]],[[2,"statusbar-padding",null],[2,"has-refresher",null]],null,null,V.b,V.a)),o._2(13,4374528,null,0,M.a,[w.a,R.a,A.a,o.l,o.C,E.a,H.a,o.x,[2,U.a],[2,F.a]],null,null),(l()(),o._25(-1,1,["\n  "])),(l()(),o.Y(16777216,null,1,1,null,t)),o._2(16,16384,null,0,K.k,[o.M,o.J],{ngIf:[0,"ngIf"]},null),(l()(),o._25(-1,1,["\n"])),(l()(),o._25(-1,null,["\n"]))],function(l,n){l(n,16,0,n.component.form)},function(l,n){l(n,3,0,o._15(n,4)._hidden,o._15(n,4)._sbPadding);l(n,12,0,o._15(n,13).statusbarPadding,o._15(n,13)._hasRefresher)})}Object.defineProperty(n,"__esModule",{value:!0});var o=u(0),e=(u(1),u(106)),i=(u(51),u(24)),s=(u(166),u(104)),r=u(281),_=function(){function l(l,n,u,t,a){var o=this;this.navCtrl=l,this.database=n,this.toastCtrl=u,this.formBuilder=t,this.utils=a,this.form=t.group({email:["",i.v.required],password:["",i.v.required]}),this.form.valueChanges.subscribe(function(l){o.isReadyToSave=o.form.valid}),this.isReadyToSave=this.form.valid}return l.prototype.login=function(){var l=this;this.database.login(this.form.value).then(function(n){n&&l.navCtrl.setRoot(n.profileCompleted?r.b:"ProfileEditPage")}).catch(function(n){l.utils.showToast(422==n.status?"Usuário ou senha inválidos":n.message,"error")})},l.prototype.register=function(){this.navCtrl.push("RegisterPage")},l.prototype.forgotPassword=function(){this.navCtrl.push("ForgotPasswordPage")},l}(),c=function(){return function(){}}(),d=u(268),b=u(269),g=u(270),p=u(271),f=u(272),m=u(273),C=u(274),h=u(275),k=u(276),v=u(170),y=u(20),I=u(18),w=u(2),x=u(54),P=u(70),S=u(59),T=u(465),D=u(169),R=u(5),E=u(12),M=u(29),A=u(13),J=u(52),N=u(26),B=u(107),U=u(6),Y=u(444),q=u(45),F=u(28),j=u(278),L=u(69),O=u(46),V=u(277),H=u(33),K=u(15),Q=u(68),W=u(115),Z=o._1({encapsulation:2,styles:[],data:{}}),z=o.Z("page-login",_,function(l){return o._27(0,[(l()(),o._3(0,0,null,null,1,"page-login",[],null,null,null,a,Z)),o._2(1,49152,null,0,_,[F.a,Q.a,W.a,i.e,s.a],null,null)],null,null)},{},{},[]),G=u(72),X=u(73),$=u(75),ll=u(74),nl=u(37),ul=u(110),tl=u(168),al=u(53);u.d(n,"LoginPageModuleNgFactory",function(){return ol});var ol=o._0(c,[],function(l){return o._11([o._12(512,o.k,o.W,[[8,[d.a,b.a,g.a,p.a,f.a,m.a,C.a,h.a,k.a,z]],[3,o.k],o.v]),o._12(4608,K.m,K.l,[o.t,[2,K.w]]),o._12(4608,i.y,i.y,[]),o._12(4608,i.e,i.e,[]),o._12(4608,G.b,G.a,[]),o._12(4608,X.a,X.b,[]),o._12(4608,$.b,$.a,[]),o._12(4608,ll.b,ll.a,[]),o._12(4608,nl.a,nl.a,[ul.a,G.b,X.a,$.b,ll.b,nl.b,nl.c]),o._12(512,K.c,K.c,[]),o._12(512,i.w,i.w,[]),o._12(512,i.l,i.l,[]),o._12(512,i.u,i.u,[]),o._12(512,tl.a,tl.a,[]),o._12(512,tl.b,tl.b,[]),o._12(512,e.a,e.a,[]),o._12(512,c,c,[]),o._12(256,al.a,_,[]),o._12(256,nl.c,void 0,[]),o._12(256,nl.b,void 0,[])])})},444:function(l,n,u){"use strict";function t(l){return a._27(0,[(l()(),a._3(0,0,null,null,1,"div",[["class","toolbar-background"]],null,null,null,null,null)),a._2(1,278528,null,0,o.i,[a.r,a.s,a.l,a.D],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),(l()(),a._3(2,0,null,null,8,"button",[["class","back-button"],["ion-button","bar-button"]],[[8,"hidden",0]],[[null,"click"]],function(l,n,u){var t=!0;if("click"===n){t=!1!==l.component.backButtonClick(u)&&t}return t},e.b,e.a)),a._2(3,278528,null,0,o.i,[a.r,a.s,a.l,a.D],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),a._2(4,1097728,null,0,i.a,[[8,"bar-button"],s.a,a.l,a.C],null,null),(l()(),a._3(5,0,null,0,2,"ion-icon",[["class","back-button-icon"],["role","img"]],[[2,"hide",null]],null,null,null,null)),a._2(6,278528,null,0,o.i,[a.r,a.s,a.l,a.D],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),a._2(7,147456,null,0,r.a,[s.a,a.l,a.C],{name:[0,"name"]},null),(l()(),a._3(8,0,null,0,2,"span",[["class","back-button-text"]],null,null,null,null,null)),a._2(9,278528,null,0,o.i,[a.r,a.s,a.l,a.D],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),(l()(),a._25(10,null,["",""])),a._14(null,0),a._14(null,1),a._14(null,2),(l()(),a._3(14,0,null,null,2,"div",[["class","toolbar-content"]],null,null,null,null,null)),a._2(15,278528,null,0,o.i,[a.r,a.s,a.l,a.D],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null),a._14(null,3)],function(l,n){var u=n.component;l(n,1,0,"toolbar-background","toolbar-background-"+u._mode);l(n,3,0,"back-button","back-button-"+u._mode);l(n,6,0,"back-button-icon","back-button-icon-"+u._mode);l(n,7,0,u._bbIcon);l(n,9,0,"back-button-text","back-button-text-"+u._mode);l(n,15,0,"toolbar-content","toolbar-content-"+u._mode)},function(l,n){var u=n.component;l(n,2,0,u._hideBb);l(n,5,0,a._15(n,7)._hidden);l(n,10,0,u._backText)})}u.d(n,"a",function(){return _}),n.b=t;var a=u(0),o=u(15),e=u(52),i=u(26),s=u(2),r=u(58),_=(u(6),u(28),a._1({encapsulation:2,styles:[],data:{}}))},465:function(l,n,u){"use strict";function t(l){return s._27(0,[(l()(),s._3(0,0,[[1,0],["textInput",1]],null,1,"input",[["class","text-input"],["dir","auto"]],[[8,"type",0],[1,"aria-labelledby",0],[1,"min",0],[1,"max",0],[1,"step",0],[1,"autocomplete",0],[1,"autocorrect",0],[8,"placeholder",0],[8,"disabled",0],[8,"readOnly",0]],[[null,"input"],[null,"blur"],[null,"focus"],[null,"keydown"]],function(l,n,u){var t=!0,a=l.component;if("input"===n){t=!1!==a.onInput(u)&&t}if("blur"===n){t=!1!==a.onBlur(u)&&t}if("focus"===n){t=!1!==a.onFocus(u)&&t}if("keydown"===n){t=!1!==a.onKeydown(u)&&t}return t},null,null)),s._2(1,278528,null,0,r.i,[s.r,s.s,s.l,s.D],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null)],function(l,n){l(n,1,0,"text-input","text-input-"+n.component._mode)},function(l,n){var u=n.component;l(n,0,0,u._type,u._labelId,u.min,u.max,u.step,u.autocomplete,u.autocorrect,u.placeholder,u._disabled,u._readonly)})}function a(l){return s._27(0,[(l()(),s._3(0,0,[[1,0],["textInput",1]],null,1,"textarea",[["class","text-input"]],[[1,"aria-labelledby",0],[1,"autocomplete",0],[1,"autocorrect",0],[8,"placeholder",0],[8,"disabled",0],[8,"readOnly",0]],[[null,"input"],[null,"blur"],[null,"focus"],[null,"keydown"]],function(l,n,u){var t=!0,a=l.component;if("input"===n){t=!1!==a.onInput(u)&&t}if("blur"===n){t=!1!==a.onBlur(u)&&t}if("focus"===n){t=!1!==a.onFocus(u)&&t}if("keydown"===n){t=!1!==a.onKeydown(u)&&t}return t},null,null)),s._2(1,278528,null,0,r.i,[s.r,s.s,s.l,s.D],{klass:[0,"klass"],ngClass:[1,"ngClass"]},null)],function(l,n){l(n,1,0,"text-input","text-input-"+n.component._mode)},function(l,n){var u=n.component;l(n,0,0,u._labelId,u.autocomplete,u.autocorrect,u.placeholder,u._disabled,u._readonly)})}function o(l){return s._27(0,[(l()(),s._3(0,0,null,null,1,"button",[["class","text-input-clear-icon"],["clear",""],["ion-button",""],["tabindex","-1"],["type","button"]],null,[[null,"click"],[null,"mousedown"]],function(l,n,u){var t=!0,a=l.component;if("click"===n){t=!1!==a.clearTextInput(u)&&t}if("mousedown"===n){t=!1!==a.clearTextInput(u)&&t}return t},_.b,_.a)),s._2(1,1097728,null,0,c.a,[[8,""],d.a,s.l,s.C],{clear:[0,"clear"]},null)],function(l,n){l(n,1,0,"")},null)}function e(l){return s._27(0,[(l()(),s._3(0,0,null,null,0,"div",[["class","input-cover"]],null,[[null,"touchstart"],[null,"touchend"],[null,"mousedown"],[null,"mouseup"]],function(l,n,u){var t=!0,a=l.component;if("touchstart"===n){t=!1!==a._pointerStart(u)&&t}if("touchend"===n){t=!1!==a._pointerEnd(u)&&t}if("mousedown"===n){t=!1!==a._pointerStart(u)&&t}if("mouseup"===n){t=!1!==a._pointerEnd(u)&&t}return t},null,null))],null,null)}function i(l){return s._27(2,[s._23(671088640,1,{_native:0}),(l()(),s.Y(16777216,null,null,1,null,t)),s._2(2,16384,null,0,r.k,[s.M,s.J],{ngIf:[0,"ngIf"]},null),(l()(),s.Y(16777216,null,null,1,null,a)),s._2(4,16384,null,0,r.k,[s.M,s.J],{ngIf:[0,"ngIf"]},null),(l()(),s.Y(16777216,null,null,1,null,o)),s._2(6,16384,null,0,r.k,[s.M,s.J],{ngIf:[0,"ngIf"]},null),(l()(),s.Y(16777216,null,null,1,null,e)),s._2(8,16384,null,0,r.k,[s.M,s.J],{ngIf:[0,"ngIf"]},null)],function(l,n){var u=n.component;l(n,2,0,!u._isTextarea);l(n,4,0,u._isTextarea);l(n,6,0,u._clearInput);l(n,8,0,u._useAssist)},null)}u.d(n,"a",function(){return b}),n.b=i;var s=u(0),r=u(15),_=u(52),c=u(26),d=u(2),b=(u(5),u(18),u(13),s._1({encapsulation:2,styles:[],data:{}}))}});
+webpackJsonp([19],{
+
+/***/ 480:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TutorialPageModule", function() { return TutorialPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tutorial__ = __webpack_require__(689);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__ = __webpack_require__(75);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+var TutorialPageModule = /** @class */ (function () {
+    function TutorialPageModule() {
+    }
+    TutorialPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__tutorial__["a" /* TutorialPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__tutorial__["a" /* TutorialPage */]),
+                __WEBPACK_IMPORTED_MODULE_3__ngx_translate_core__["b" /* TranslateModule */].forChild()
+            ],
+            exports: [
+                __WEBPACK_IMPORTED_MODULE_2__tutorial__["a" /* TutorialPage */]
+            ]
+        })
+    ], TutorialPageModule);
+    return TutorialPageModule;
+}());
+
+//# sourceMappingURL=tutorial.module.js.map
+
+/***/ }),
+
+/***/ 689:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TutorialPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers__ = __webpack_require__(72);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var TutorialPage = /** @class */ (function () {
+    function TutorialPage(navCtrl, menu, translate, platform, database) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.menu = menu;
+        this.platform = platform;
+        this.database = database;
+        this.showSkip = true;
+        this.dir = 'ltr';
+        this.dir = platform.dir();
+        translate.get(["TUTORIAL_SLIDE1_TITLE",
+            "TUTORIAL_SLIDE1_DESCRIPTION",
+            "TUTORIAL_SLIDE2_TITLE",
+            "TUTORIAL_SLIDE2_DESCRIPTION",
+            "TUTORIAL_SLIDE3_TITLE",
+            "TUTORIAL_SLIDE3_DESCRIPTION",
+        ]).subscribe(function (values) {
+            _this.slides = [
+                {
+                    title: values.TUTORIAL_SLIDE1_TITLE,
+                    description: values.TUTORIAL_SLIDE1_DESCRIPTION,
+                    image: 'assets/img/ica-slidebox-img-1.png',
+                },
+                {
+                    title: values.TUTORIAL_SLIDE2_TITLE,
+                    description: values.TUTORIAL_SLIDE2_DESCRIPTION,
+                    image: 'assets/img/ica-slidebox-img-2.png',
+                },
+                {
+                    title: values.TUTORIAL_SLIDE3_TITLE,
+                    description: values.TUTORIAL_SLIDE3_DESCRIPTION,
+                    image: 'assets/img/ica-slidebox-img-3.png',
+                }
+            ];
+        });
+    }
+    TutorialPage.prototype.startApp = function () {
+        this.database.setSkipTour(true);
+        this.navCtrl.setRoot('HomePage', {}, {
+            animate: true,
+            direction: 'forward'
+        });
+    };
+    TutorialPage.prototype.onSlideChangeStart = function (slider) {
+        this.showSkip = !slider.isEnd();
+    };
+    TutorialPage.prototype.ionViewDidEnter = function () {
+        // the root left menu should be disabled on the tutorial page
+        this.menu.enable(false);
+    };
+    TutorialPage.prototype.ionViewWillLeave = function () {
+        // enable the root left menu when leaving the tutorial page
+        this.menu.enable(true);
+    };
+    TutorialPage.prototype.openPage = function (page, params) {
+        // Reset the content nav to have just this page
+        // we wouldn't want the back button to show in this scenario
+        this.navCtrl.push(page, params);
+    };
+    TutorialPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-tutorial',template:/*ion-inline-start:"/home/diego/dev/agrofloresta/src/pages/tutorial/tutorial.html"*/'<ion-header no-shadow>\n  <ion-navbar *ngIf="showSkip">\n    <ion-buttons end *ngIf="showSkip">\n      <button ion-button (click)="startApp()" color="primary">Pular introdução</button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content no-bounce>\n  <ion-slides pager="true" dir="{{dir}}" (ionSlideWillChange)="onSlideChangeStart($event)">\n    <ion-slide>\n      <img src="assets/img/logo_full.png" class="slide-image first" />\n      <h3>Rede Agroflorestal!</h3>\n      <p>Esta é uma plataforma de construção colaborativa de conhecimento sobre Agroflorestas.</p>\n      <p>A idéia é criar-mos uma base de dados e um canal de comunicação e difusão dos conhecimentos.\n      </p>\n      <h5 class="slide-title">Seja bem vindo!</h5>\n    </ion-slide>\n    <ion-slide>\n      <img src="assets/img/logo_full.png" class="slide-image" />\n      <h3> Caracteristicas </h3>\n      <ul>\n        <li> - Conteúdo criado e mantido de forma colaborativa.</li>\n        <li> - Qualquer pessoa pode criar ou alterar qualquer conteúdo.</li>\n        <li> - O Código fonte é aberto (open source).</li>\n        <li> - Disponível offline.</li>\n        <li> - Sem banners e publicidade.</li>\n      </ul>\n    </ion-slide>\n    <ion-slide>\n      <img src="assets/img/logo_full.png" class="slide-image last" />\n      <h4>Vamos fazer juntos? </h4>\n      <br>\n      <button ion-button color="primary" large (click)="startApp()">\n         Continuar\n      </button>\n    </ion-slide>\n  </ion-slides>\n</ion-content>\n'/*ion-inline-end:"/home/diego/dev/agrofloresta/src/pages/tutorial/tutorial.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* MenuController */], __WEBPACK_IMPORTED_MODULE_2__ngx_translate_core__["c" /* TranslateService */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_3__providers__["b" /* Database */]])
+    ], TutorialPage);
+    return TutorialPage;
+}());
+
+//# sourceMappingURL=tutorial.js.map
+
+/***/ })
+
+});
+//# sourceMappingURL=19.js.map
