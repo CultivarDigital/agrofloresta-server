@@ -43,6 +43,16 @@ router.get('/users/:id', auth.authenticated, function(req, res, next) {
   }).catch(next);
 });
 
+router.get('/currentuser', auth.authenticated, function(req, res, next) {
+  User.findById(req.payload.id).then(function(user) {
+    if (!user) {
+      return res.sendStatus(401);
+    }
+    return res.json(user.toAuthJSON());
+  }).catch(next);
+});
+
+
 router.post('/users', auth.curator, function(req, res, next) {
   var user = new User();
 
@@ -68,6 +78,7 @@ router.post('/users', auth.curator, function(req, res, next) {
     return res.send(user);
   }).catch(next);
 });
+
 
 router.post('/users/login', function(req, res, next) {
   if (!req.body.email) {
@@ -100,6 +111,11 @@ router.post('/users/login', function(req, res, next) {
       return res.status(422).json(info);
     }
   })(req, res, next);
+});
+
+router.get('/logout', auth.authenticated, function(req, res){
+  req.logout();
+  res.json('ok');
 });
 
 router.post('/users/register', function(req, res) {
@@ -207,7 +223,7 @@ router.put('/users/:id', auth.authenticated, function(req, res, next) {
     }
 
     user.save().then(function() {
-      return res.send(user);
+      return res.send(user.toAuthJSON());
     }).catch(next);
   })
 });
