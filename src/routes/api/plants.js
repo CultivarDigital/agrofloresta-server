@@ -8,7 +8,7 @@ var express = require('express'),
 
 
 router.get('/', function(req, res) {
-  var per_page = 10
+  var per_page = req.query.per_page || 10
   var page = req.query.page || 1
   var query = {}
   if (req.query.search) {
